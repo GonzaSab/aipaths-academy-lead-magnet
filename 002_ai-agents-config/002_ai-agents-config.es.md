@@ -1,389 +1,118 @@
 ---
-title: Pack de Configuración de Agentes IA
-description: Configuraciones listas para producción de agentes IA para revisión de código, generación de documentación, pruebas y depuración. Despliega asistentes IA autónomos en tu flujo de desarrollo.
+title: Paquete de Configuración de Agentes IA
+description: Agentes de Claude Code listos para usar en tareas comunes de desarrollo. Cópialos a tu carpeta de agentes y empieza a usarlos inmediatamente.
 category: ai-agents
-tags: [ai-agents, automatización, code-review, testing, documentación, workflow, langchain, agentes-autónomos]
-difficulty: intermediate
+tags: [ai-agents, automation, claude-code, productivity, workflow]
+difficulty: beginner
 version: 1.0.0
 published: true
 locale: es
 order: 2
 lastUpdated: '2025-01-13'
 author: AIPaths Academy
-downloadSize: '1.8 MB'
-estimatedSetupTime: '15 minutos'
+downloadSize: '50 KB'
+estimatedSetupTime: '2 minutos'
 prerequisites:
-  - Comprensión de agentes IA y LLMs
-  - Node.js 18+ instalado
-  - API key de OpenAI o Anthropic
-  - Conocimiento básico de LangChain o frameworks similares
+  - Claude Code instalado
 files:
   - path: agents/
-    description: Definiciones de agentes IA preconfigurados
+    description: 5 archivos de agentes de Claude Code pre-configurados
   - path: README.md
-    description: Instrucciones de configuración y uso
-  - path: examples/
-    description: Casos de uso ejemplo y flujos de trabajo
+    description: Instrucciones rápidas de configuración
 ---
 
-## Qué Incluye
+## ¿Qué Son los Agentes IA?
 
-Este pack de configuración proporciona agentes IA listos para producción que pueden manejar autónomamente tareas comunes de desarrollo. Deja de revisar código manualmente, escribir documentación o depurar - deja que los agentes IA hagan el trabajo pesado.
+Los agentes IA en Claude Code son asistentes especializados que manejan automáticamente tareas específicas de desarrollo. En lugar de pedirle manualmente a Claude revisiones de código, commits o trabajo de base de datos, los agentes se activan proactivamente cuando detectan tareas relevantes.
 
-### Agentes IA Preconfigurados
+## Lo Que Obtienes
 
-- **Agente de Revisión de Código**: Revisa automáticamente pull requests y proporciona feedback detallado
-- **Agente de Documentación**: Genera documentación completa desde tu código
-- **Agente de Pruebas**: Crea pruebas unitarias e integración automáticamente
-- **Agente de Depuración**: Analiza errores y sugiere soluciones
-- **Agente de Refactorización**: Identifica code smells y propone mejoras
-- **Agente de Auditoría de Seguridad**: Escanea vulnerabilidades y mejores prácticas
+Este paquete incluye 5 agentes listos para usar en flujos de trabajo comunes:
 
-## Por Qué Usar Agentes IA?
+### 1. Guardián de Commits Git
+- Revisa tus cambios en busca de problemas de seguridad (API keys, secretos, etc.)
+- Crea mensajes de commit profesionales y convencionales
+- Detecta archivos que no deberían ser commiteados (capturas, archivos temporales)
+- Maneja todo el proceso de commit y push de forma segura
 
-Los asistentes de codificación IA tradicionales requieren prompts constantes y supervisión. Los agentes IA trabajan autónomamente:
+### 2. Gestor de Base de Datos Supabase
+- Crea migraciones de base de datos con el schema apropiado
+- Configura políticas de Row Level Security (RLS)
+- Optimiza queries lentas e índices
+- Gestiona cambios de schema de base de datos para tus apps Next.js + Supabase
 
-- **Disponibilidad 24/7**: Los agentes funcionan continuamente, manejando tareas conforme aparecen
-- **Calidad Consistente**: Revisiones de código y documentación estandarizadas
-- **Ahorro de Tiempo**: Reduce trabajo manual en 60-80%
-- **Mejores Prácticas**: Los agentes aplican estándares de código automáticamente
-- **Escalabilidad**: Maneja múltiples repositorios y proyectos simultáneamente
+### 3. Auditor de Seguridad Next.js
+- Escanea tu código en busca de vulnerabilidades de seguridad
+- Verifica secretos y API keys expuestas
+- Valida flujos de autenticación y autorización
+- Revisa dependencias en busca de CVEs conocidos
+- Asegura que los headers de seguridad estén configurados correctamente
 
-## Características
+### 4. Probador de Navegador Playwright
+- Prueba páginas web en navegadores reales
+- Verifica errores de consola y problemas
+- Captura capturas de pantalla y diagnósticos
+- Valida funcionalidad antes del despliegue
 
-### Agente de Revisión de Código
-- ✅ Analiza pull requests automáticamente
-- ✅ Verifica bugs, problemas de seguridad y rendimiento
-- ✅ Sugiere mejoras específicas con ejemplos de código
-- ✅ Aplica estándares de código del equipo
-- ✅ Publica comentarios directamente en GitHub/GitLab
+### 5. Auditor de Limpieza de Código
+- Encuentra archivos no usados y carpetas vacías
+- Identifica artefactos temporales y desorden
+- Sugiere oportunidades de limpieza
+- Ayuda a mantener tu repositorio organizado
 
-### Agente de Documentación
-- ✅ Genera archivos README desde el código
-- ✅ Crea documentación de API automáticamente
-- ✅ Escribe comentarios inline en el código
-- ✅ Mantiene documentación técnica actualizada
-- ✅ Soporta múltiples formatos (Markdown, JSDoc, etc.)
+## Configuración (Toma 2 Minutos)
 
-### Agente de Pruebas
-- ✅ Genera pruebas unitarias para código nuevo
-- ✅ Crea suites de pruebas de integración
-- ✅ Identifica casos extremos y escenarios de error
-- ✅ Mantiene estándares de cobertura de pruebas
-- ✅ Actualiza pruebas cuando cambia el código
-
-### Agente de Depuración
-- ✅ Analiza mensajes de error y stack traces
-- ✅ Sugiere causas raíz y soluciones
-- ✅ Busca en el código problemas similares
-- ✅ Proporciona guía paso a paso de depuración
-- ✅ Aprende de problemas pasados
-
-### Agente de Refactorización
-- ✅ Identifica duplicación de código y complejidad
-- ✅ Sugiere mejoras de patrones de diseño
-- ✅ Detecta dependencias obsoletas
-- ✅ Propone optimizaciones de rendimiento
-- ✅ Crea planes de refactorización con evaluación de riesgo
-
-### Agente de Auditoría de Seguridad
-- ✅ Escanea vulnerabilidades comunes (OWASP Top 10)
-- ✅ Verifica seguridad de dependencias
-- ✅ Valida autenticación y autorización
-- ✅ Revisa manejo de datos y privacidad
-- ✅ Genera reportes de seguridad
-
-## Instrucciones de Configuración
-
-### Inicio Rápido (15 minutos)
-
-1. **Descarga y Extrae**
+1. **Descargar y Extraer**
    ```bash
-   unzip ai-agents-config.zip -d ~/ai-agents
-   cd ~/ai-agents
+   unzip ai-agents-config.zip
    ```
 
-2. **Instala Dependencias**
+2. **Copiar Archivos de Agentes**
    ```bash
-   npm install
+   cp agents/*.md ~/.claude/agents/
    ```
 
-3. **Configura API Keys**
-   ```bash
-   cp .env.example .env
-   # Edita .env y agrega tus API keys
-   ```
+   O manualmente:
+   - Ve a la carpeta `agents` en la descarga
+   - Copia los 5 archivos `.md`
+   - Pégalos en `~/.claude/agents/` en tu máquina
 
-4. **Prueba un Agente**
-   ```bash
-   npm run test-agent code-review
-   ```
+3. **¡Eso Es Todo!**
+   Los agentes ya están activos en Claude Code.
 
-5. **Despliega Agentes**
-   ```bash
-   npm run deploy
-   ```
+## Cómo Usarlos
 
-### Configuración Detallada
+Los agentes se activan automáticamente cuando son relevantes. Simplemente trabaja naturalmente con Claude Code:
 
-#### Variables de Entorno
-```bash
-# Requeridas
-OPENAI_API_KEY=sk-...
-ANTHROPIC_API_KEY=sk-ant-...
+**Guardián de Commits Git:**
+- Di "commitea estos cambios" o "sube el código"
+- El agente revisa problemas de seguridad y maneja el commit
 
-# Opcionales
-GITHUB_TOKEN=ghp_...
-SLACK_WEBHOOK_URL=https://...
-```
+**Gestor de DB Supabase:**
+- Di "crea una tabla para preferencias de usuario"
+- El agente crea la migración con las políticas RLS apropiadas
 
-#### Configuración de Agentes
-Cada agente tiene un archivo de configuración en `agents/`:
+**Auditor de Seguridad Next.js:**
+- Di "revisa mi app en busca de problemas de seguridad"
+- El agente realiza una auditoría de seguridad completa
 
-```json
-{
-  "name": "code-review",
-  "model": "gpt-4-turbo-preview",
-  "triggers": ["pull_request.opened", "pull_request.synchronize"],
-  "rules": ["check-style", "check-security", "check-performance"],
-  "notifications": ["github", "slack"]
-}
-```
+**Probador de Navegador Playwright:**
+- Di "prueba http://localhost:3000 en busca de errores"
+- El agente abre un navegador y diagnostica problemas
 
-## Arquitecturas de Agentes
+**Auditor de Limpieza de Código:**
+- Di "revisa qué podemos limpiar"
+- El agente escanea archivos no usados y sugiere limpieza
 
-### Arquitectura del Agente de Revisión de Código
-```
-Pull Request Creado
-    ↓
-Obtener Archivos Modificados
-    ↓
-Analizar Código (LLM)
-    ↓
-Verificar Contra Reglas
-    ↓
-Generar Feedback
-    ↓
-Publicar Comentarios
-```
+## Consejos
 
-### Arquitectura del Agente de Documentación
-```
-Cambios de Código Detectados
-    ↓
-Analizar Estructura de Código
-    ↓
-Extraer Funciones/Clases
-    ↓
-Generar Descripciones (LLM)
-    ↓
-Formatear Documentación
-    ↓
-Crear/Actualizar Archivos
-```
+- Los agentes trabajan proactivamente - se sugerirán cuando sean relevantes
+- Puedes seguir usando Claude normalmente - los agentes mejoran, no reemplazan
+- Revisa los archivos `.md` individuales para ver las capacidades completas de cada agente
+- Personaliza el comportamiento de los agentes editando los archivos `.md`
 
-## Opciones de Integración
+## ¿Necesitas Ayuda?
 
-### Integración con GitHub
-Los agentes pueden automáticamente:
-- Revisar pull requests
-- Crear issues
-- Actualizar documentación
-- Ejecutarse en eventos de PR
-
-### Integración con GitLab
-Soporta:
-- Revisiones de merge requests
-- Integración de pipelines
-- Actualizaciones de wiki
-
-### Integración con Slack
-Recibe notificaciones de:
-- Feedback de revisión de código
-- Hallazgos de seguridad
-- Fallos de pruebas
-
-### Webhooks Personalizados
-Integra con cualquier sistema vía webhooks
-
-## Casos de Uso
-
-### Escenario 1: Revisiones de Código Automatizadas
-**Problema**: Las revisiones manuales consumen tiempo y son inconsistentes
-
-**Solución**: Despliega el Agente de Revisión para revisar todos los PRs automáticamente
-- Ahorra 2-4 horas por desarrollador por semana
-- Asegura estándares de calidad consistentes
-- Detecta errores comunes antes de revisión humana
-
-### Escenario 2: Mantenimiento de Documentación
-**Problema**: La documentación se vuelve obsoleta conforme evoluciona el código
-
-**Solución**: El Agente de Documentación se ejecuta en cada commit
-- Auto-actualiza documentación de API
-- Mantiene archivos README
-- Genera comentarios inline
-
-### Escenario 3: Cobertura de Pruebas
-**Problema**: Los desarrolladores olvidan escribir pruebas
-
-**Solución**: El Agente de Pruebas genera tests para todo código nuevo
-- Mantiene cobertura de pruebas de 80%+
-- Identifica casos extremos
-- Reduce bugs de regresión
-
-### Escenario 4: Auditorías de Seguridad
-**Problema**: Problemas de seguridad descubiertos muy tarde
-
-**Solución**: El Agente de Auditoría ejecuta escaneos continuos
-- Encuentra vulnerabilidades temprano
-- Monitorea dependencias
-- Aplica mejores prácticas de seguridad
-
-## Guía de Personalización
-
-### Creando Agentes Personalizados
-
-1. **Define el Propósito del Agente**
-   ```javascript
-   const myAgent = {
-     name: 'mi-agente-personalizado',
-     description: 'Qué hace el agente',
-     triggers: ['tipo-de-evento'],
-     actions: [/* acciones del agente */]
-   }
-   ```
-
-2. **Agrega Herramientas**
-   ```javascript
-   const tools = [
-     new FileSystemTool(),
-     new GitHubTool(),
-     new CustomTool()
-   ]
-   ```
-
-3. **Configura LLM**
-   ```javascript
-   const llm = new ChatOpenAI({
-     modelName: 'gpt-4-turbo-preview',
-     temperature: 0.3
-   })
-   ```
-
-4. **Despliega Agente**
-   ```bash
-   npm run deploy-agent mi-agente-personalizado
-   ```
-
-## Mejores Prácticas
-
-### 1. Empieza Pequeño
-Comienza con un agente (Revisión de Código recomendado) y expande gradualmente
-
-### 2. Monitorea Costos
-Rastrea uso de API y establece límites de gasto:
-```javascript
-{
-  "maxTokensPerDay": 100000,
-  "alertThreshold": 0.8
-}
-```
-
-### 3. Revisa Salidas del Agente
-Verifica regularmente el feedback del agente para precisión y utilidad
-
-### 4. Personaliza Reglas
-Adapta reglas del agente a los estándares de tu equipo:
-```javascript
-{
-  "codeReview": {
-    "maxFunctionLength": 50,
-    "enforceTypeScript": true,
-    "requireTests": true
-  }
-}
-```
-
-### 5. Itera y Mejora
-Usa feedback para refinar prompts y comportamientos del agente
-
-## Métricas de Rendimiento
-
-Rastrea efectividad del agente con analíticas integradas:
-
-- **Score de Calidad de Código**: Mide mejora con el tiempo
-- **Tiempo de Revisión**: Tiempo desde PR hasta feedback
-- **Tasa de Detección de Bugs**: Problemas capturados por agentes
-- **Tiempo Ahorrado del Desarrollador**: Horas ahorradas por semana
-
-## Resolución de Problemas
-
-### Agente No Responde
-```bash
-# Verifica estado del agente
-npm run status
-
-# Ver logs
-npm run logs code-review
-
-# Reiniciar agente
-npm run restart code-review
-```
-
-### Límites de API
-- Usa limitación de rate en configuración
-- Implementa cola de requests
-- Considera usar múltiples API keys
-
-### Errores de Integración
-- Verifica URLs de webhook
-- Revisa permisos de token API
-- Revisa configuración de firewall
-
-## Requisitos del Sistema
-
-- **Runtime**: Node.js 18+ o Python 3.10+
-- **Memoria**: 2GB RAM mínimo por agente
-- **Acceso API**: Cuenta de OpenAI o Anthropic
-- **Almacenamiento**: 1GB para logs y caché
-- **Red**: Conexión a internet estable
-
-## Soporte y Recursos
-
-- **Documentación**: Guías completas en carpeta `/docs`
-- **Ejemplos**: Ejemplos funcionales en carpeta `/examples`
-- **Tutorial en Video**: [Ver guía de configuración](/es/videos/ai-agents)
-- **Comunidad**: [Únete a nuestro Discord](https://discord.gg/aipaths)
+- **Problemas**: Repórtalos en https://github.com/anthropics/claude-code/issues
+- **Comunidad**: Únete a nuestro Discord en discord.gg/aipaths
 - **Email**: support@aipaths.academy
-
-## Próximos Pasos
-
-Después de desplegar tus agentes:
-
-1. **Monitorea Rendimiento**: Revisa dashboards diariamente la primera semana
-2. **Recolecta Feedback**: Pregunta a tu equipo sobre utilidad del agente
-3. **Ajusta Configuración**: Modifica reglas basado en feedback
-4. **Expande Uso**: Agrega más agentes gradualmente
-5. **Comparte Resultados**: Ayuda a otros a aprender de tu experiencia
-
-## Temas Avanzados
-
-Explora capacidades avanzadas de agentes:
-
-- **Colaboración Multi-Agente**: Agentes trabajando juntos
-- **Herramientas Personalizadas**: Construyendo herramientas especializadas
-- **Integración RAG**: Conectando agentes a bases de conocimiento
-- **Orquestación de Agentes**: Gestionando flujos de trabajo complejos
-
-Consulta la Guía Avanzada incluida en la descarga.
-
-## Comienza Ahora
-
-Descarga el Pack de Configuración de Agentes IA y despliega tu primer asistente de codificación autónomo en 15 minutos.
-
----
-
-**¿Preguntas?** Escribe a support@aipaths.academy o consulta nuestra [documentación](/es/docs/ai-agents).
-
-**¿Historia de Éxito?** Comparte tus resultados con la comunidad e inspira a otros!
