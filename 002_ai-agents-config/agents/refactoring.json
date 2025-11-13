@@ -1,0 +1,188 @@
+{
+  "$schema": "https://ai-agents.dev/schema/agent.json",
+  "name": "refactoring",
+  "version": "1.0.0",
+  "description": "Identifies code improvements and proposes refactoring opportunities",
+
+  "model": {
+    "provider": "openai",
+    "name": "gpt-4-turbo-preview",
+    "fallback": "gpt-3.5-turbo",
+    "temperature": 0.4,
+    "maxTokens": 6144
+  },
+
+  "systemPrompt": "You are a software architecture expert who specializes in code refactoring. Your goal is to:\n\n1. Identify code smells and anti-patterns\n2. Suggest design pattern improvements\n3. Reduce complexity and improve maintainability\n4. Enhance code reusability\n5. Optimize performance where needed\n\nProvide refactoring suggestions with clear before/after examples and explain the benefits of each change.",
+
+  "triggers": [
+    {
+      "event": "schedule",
+      "enabled": true,
+      "cron": "0 0 * * 1"
+    },
+    {
+      "event": "manual",
+      "enabled": true
+    },
+    {
+      "event": "complexity-threshold",
+      "enabled": true,
+      "threshold": 15
+    }
+  ],
+
+  "analysisTypes": [
+    {
+      "type": "code-smells",
+      "enabled": true,
+      "checks": [
+        "long-method",
+        "large-class",
+        "duplicate-code",
+        "dead-code",
+        "god-object"
+      ]
+    },
+    {
+      "type": "complexity",
+      "enabled": true,
+      "metrics": [
+        "cyclomatic-complexity",
+        "cognitive-complexity",
+        "nesting-depth"
+      ]
+    },
+    {
+      "type": "design-patterns",
+      "enabled": true,
+      "suggest": [
+        "factory",
+        "strategy",
+        "observer",
+        "decorator",
+        "singleton"
+      ]
+    }
+  ],
+
+  "tools": [
+    {
+      "name": "filesystem",
+      "enabled": true,
+      "permissions": ["read", "write"]
+    },
+    {
+      "name": "ast-parser",
+      "enabled": true
+    },
+    {
+      "name": "complexity-analyzer",
+      "enabled": true
+    },
+    {
+      "name": "duplicate-detector",
+      "enabled": true
+    }
+  ],
+
+  "workflow": {
+    "steps": [
+      {
+        "name": "scan-codebase",
+        "action": "filesystem.scan",
+        "config": {
+          "path": "src",
+          "extensions": [".js", ".ts", ".tsx"]
+        },
+        "output": "codeFiles"
+      },
+      {
+        "name": "analyze-complexity",
+        "action": "complexity.analyze",
+        "input": "codeFiles",
+        "output": "complexityMetrics"
+      },
+      {
+        "name": "detect-duplicates",
+        "action": "duplicate.detect",
+        "input": "codeFiles",
+        "config": {
+          "minTokens": 50
+        },
+        "output": "duplicates"
+      },
+      {
+        "name": "identify-code-smells",
+        "action": "ast.detectSmells",
+        "input": "codeFiles",
+        "output": "codeSmells"
+      },
+      {
+        "name": "prioritize-issues",
+        "action": "prioritize",
+        "input": ["complexityMetrics", "duplicates", "codeSmells"],
+        "output": "prioritizedIssues"
+      },
+      {
+        "name": "generate-refactorings",
+        "action": "llm.suggestRefactoring",
+        "input": "prioritizedIssues",
+        "prompt": "Analyze these code issues and suggest refactorings:\n\n{issues}\n\nFor each issue:\n1. Explain the problem\n2. Show before code\n3. Provide refactored code\n4. Explain benefits\n5. Note any risks\n6. Estimate effort (small/medium/large)",
+        "output": "refactoringSuggestions"
+      },
+      {
+        "name": "create-refactoring-plan",
+        "action": "plan.create",
+        "input": "refactoringSuggestions",
+        "config": {
+          "groupBy": "priority",
+          "includeRiskAssessment": true
+        },
+        "output": "refactoringPlan"
+      },
+      {
+        "name": "create-issue",
+        "action": "github.createIssue",
+        "input": "refactoringPlan",
+        "config": {
+          "title": "Refactoring Opportunities - {date}",
+          "labels": ["refactoring", "tech-debt"]
+        }
+      }
+    ]
+  },
+
+  "rules": {
+    "complexity": {
+      "maxCyclomaticComplexity": 10,
+      "maxCognitiveComplexity": 15,
+      "maxNestingDepth": 4,
+      "maxFunctionLength": 50,
+      "maxClassLength": 300
+    },
+    "duplication": {
+      "minTokensForDuplication": 50,
+      "maxDuplicationPercent": 5
+    }
+  },
+
+  "notifications": {
+    "slack": {
+      "enabled": true,
+      "channel": "#code-quality",
+      "events": ["refactoring-plan-created"]
+    },
+    "github": {
+      "enabled": true,
+      "events": ["issue-created"]
+    }
+  },
+
+  "output": {
+    "format": "refactoring-report",
+    "includeMetrics": true,
+    "includeBeforeAfter": true,
+    "estimateEffort": true,
+    "riskAssessment": true
+  }
+}

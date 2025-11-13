@@ -1,0 +1,205 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schema/config.json",
+  "version": "1.0.0",
+  "description": "AIPaths Academy - Model Context Protocol (MCP) server configurations",
+
+  "mcpServers": {
+    "filesystem": {
+      "enabled": true,
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem"],
+      "env": {},
+      "config": {
+        "allowedDirectories": [
+          "~/Documents",
+          "~/Projects",
+          "~/code"
+        ],
+        "excludePatterns": [
+          "**/node_modules/**",
+          "**/.git/**",
+          "**/dist/**",
+          "**/build/**",
+          "**/.env*"
+        ],
+        "maxFileSize": 10485760,
+        "allowWrite": true,
+        "allowDelete": false
+      },
+      "description": "Provides AI access to read and write files in specified directories"
+    },
+
+    "github": {
+      "enabled": true,
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_TOKEN": ""
+      },
+      "config": {
+        "defaultOwner": "",
+        "defaultRepo": "",
+        "allowedOperations": [
+          "read-repo",
+          "list-issues",
+          "read-issue",
+          "create-issue",
+          "list-prs",
+          "read-pr",
+          "search-code",
+          "search-issues"
+        ]
+      },
+      "description": "Enables AI to interact with GitHub repositories, issues, and pull requests"
+    },
+
+    "web-browser": {
+      "enabled": true,
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"],
+      "env": {},
+      "config": {
+        "headless": true,
+        "allowedDomains": [
+          "developer.mozilla.org",
+          "stackoverflow.com",
+          "github.com",
+          "npmjs.com",
+          "pypi.org",
+          "docs.python.org",
+          "reactjs.org",
+          "nextjs.org"
+        ],
+        "userAgent": "AIPaths-MCP-Browser/1.0",
+        "timeout": 30000,
+        "maxPages": 5
+      },
+      "description": "Allows AI to browse web pages and extract information"
+    },
+
+    "postgres": {
+      "enabled": false,
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres"],
+      "env": {
+        "POSTGRES_CONNECTION_STRING": ""
+      },
+      "config": {
+        "connectionString": "",
+        "ssl": true,
+        "maxConnections": 5,
+        "allowedOperations": [
+          "query",
+          "schema"
+        ],
+        "readOnly": true
+      },
+      "description": "Enables AI to query PostgreSQL databases (disabled by default for security)"
+    },
+
+    "sqlite": {
+      "enabled": false,
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sqlite"],
+      "env": {},
+      "config": {
+        "databasePath": "",
+        "readOnly": true
+      },
+      "description": "Enables AI to query SQLite databases"
+    },
+
+    "memory": {
+      "enabled": true,
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "env": {},
+      "config": {
+        "persistPath": "~/.mcp/memory.json",
+        "maxEntries": 1000
+      },
+      "description": "Provides persistent memory for AI across conversations"
+    },
+
+    "time": {
+      "enabled": true,
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-time"],
+      "env": {},
+      "config": {
+        "timezone": "UTC"
+      },
+      "description": "Provides current time and timezone information"
+    },
+
+    "fetch": {
+      "enabled": true,
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-fetch"],
+      "env": {},
+      "config": {
+        "allowedDomains": [
+          "api.github.com",
+          "api.openai.com",
+          "jsonplaceholder.typicode.com"
+        ],
+        "maxResponseSize": 5242880,
+        "timeout": 10000
+      },
+      "description": "Allows AI to make HTTP requests to specified APIs"
+    },
+
+    "sequential-thinking": {
+      "enabled": true,
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "env": {},
+      "config": {
+        "maxThoughts": 20,
+        "enableBranching": true
+      },
+      "description": "Enables AI to break down complex problems into sequential steps"
+    }
+  },
+
+  "global": {
+    "logLevel": "info",
+    "logPath": "~/.mcp/logs/mcp.log",
+    "enableTelemetry": false,
+    "timeout": 30000,
+    "retries": 3,
+    "retryDelay": 1000
+  },
+
+  "security": {
+    "sandboxMode": true,
+    "allowEnvironmentVariables": false,
+    "allowShellCommands": false,
+    "allowNetworkAccess": true,
+    "allowFileSystemAccess": true,
+    "maxMemoryMB": 512,
+    "maxCpuPercent": 50
+  },
+
+  "features": {
+    "autoRestart": true,
+    "healthChecks": true,
+    "metricsCollection": false,
+    "caching": {
+      "enabled": true,
+      "ttl": 3600,
+      "maxSize": 100
+    }
+  },
+
+  "customServers": {
+    "example-custom": {
+      "enabled": false,
+      "command": "node",
+      "args": ["~/custom-mcp-servers/example-server.js"],
+      "env": {},
+      "config": {},
+      "description": "Example custom MCP server - replace with your own"
+    }
+  }
+}

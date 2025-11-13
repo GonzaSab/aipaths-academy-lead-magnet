@@ -1,0 +1,174 @@
+{
+  "$schema": "https://ai-agents.dev/schema/agent.json",
+  "name": "debugging",
+  "version": "1.0.0",
+  "description": "Analyzes errors and provides debugging guidance with root cause analysis",
+
+  "model": {
+    "provider": "anthropic",
+    "name": "claude-3-5-sonnet-20241022",
+    "fallback": "gpt-4-turbo-preview",
+    "temperature": 0.3,
+    "maxTokens": 8096
+  },
+
+  "systemPrompt": "You are an expert debugger who excels at analyzing errors and finding root causes. When debugging:\n\n1. Analyze the error message and stack trace thoroughly\n2. Identify the root cause, not just symptoms\n3. Provide step-by-step debugging guidance\n4. Suggest specific fixes with code examples\n5. Explain why the error occurred\n6. Recommend preventive measures\n\nBe methodical, clear, and educational in your approach.",
+
+  "triggers": [
+    {
+      "event": "manual",
+      "enabled": true
+    },
+    {
+      "event": "error-logged",
+      "enabled": true,
+      "filter": {
+        "severity": ["error", "critical"]
+      }
+    },
+    {
+      "event": "test-failure",
+      "enabled": true
+    }
+  ],
+
+  "capabilities": [
+    "stack-trace-analysis",
+    "error-pattern-recognition",
+    "root-cause-analysis",
+    "fix-suggestion",
+    "historical-issue-search"
+  ],
+
+  "tools": [
+    {
+      "name": "filesystem",
+      "enabled": true,
+      "permissions": ["read"]
+    },
+    {
+      "name": "git",
+      "enabled": true,
+      "permissions": ["read-history", "search-commits"]
+    },
+    {
+      "name": "log-analyzer",
+      "enabled": true
+    },
+    {
+      "name": "stack-trace-parser",
+      "enabled": true
+    }
+  ],
+
+  "workflow": {
+    "steps": [
+      {
+        "name": "parse-error",
+        "action": "error.parse",
+        "input": "errorInput",
+        "output": "parsedError"
+      },
+      {
+        "name": "extract-stack-trace",
+        "action": "stackTrace.parse",
+        "input": "parsedError",
+        "output": "stackTrace"
+      },
+      {
+        "name": "identify-error-location",
+        "action": "stackTrace.locateSource",
+        "input": "stackTrace",
+        "output": "errorLocation"
+      },
+      {
+        "name": "fetch-error-context",
+        "action": "filesystem.readContext",
+        "input": "errorLocation",
+        "config": {
+          "contextLines": 20
+        },
+        "output": "codeContext"
+      },
+      {
+        "name": "search-similar-issues",
+        "action": "git.searchIssues",
+        "input": "parsedError",
+        "output": "similarIssues"
+      },
+      {
+        "name": "analyze-root-cause",
+        "action": "llm.analyzeError",
+        "input": ["parsedError", "codeContext", "similarIssues"],
+        "prompt": "Analyze this error:\n\nError: {error}\nStack Trace: {stackTrace}\nCode Context: {codeContext}\n\nProvide:\n1. Root cause explanation\n2. Why this error occurred\n3. Step-by-step debugging process\n4. Specific fix with code\n5. How to prevent in future",
+        "output": "analysis"
+      },
+      {
+        "name": "generate-fix",
+        "action": "llm.generateFix",
+        "input": ["analysis", "codeContext"],
+        "output": "suggestedFix"
+      },
+      {
+        "name": "format-response",
+        "action": "format.debuggingGuide",
+        "input": ["analysis", "suggestedFix"],
+        "output": "debuggingGuide"
+      },
+      {
+        "name": "create-issue",
+        "action": "github.createIssue",
+        "condition": "isCritical",
+        "input": "debuggingGuide",
+        "config": {
+          "labels": ["bug", "automated"]
+        }
+      }
+    ]
+  },
+
+  "analysisPatterns": {
+    "common-errors": [
+      {
+        "pattern": "TypeError: Cannot read property .* of undefined",
+        "cause": "Accessing property on undefined/null object",
+        "fix": "Add null/undefined check before property access"
+      },
+      {
+        "pattern": "ReferenceError: .* is not defined",
+        "cause": "Variable used before declaration or out of scope",
+        "fix": "Ensure variable is declared and in correct scope"
+      },
+      {
+        "pattern": "SyntaxError",
+        "cause": "Invalid JavaScript syntax",
+        "fix": "Review code syntax at specified location"
+      }
+    ]
+  },
+
+  "notifications": {
+    "slack": {
+      "enabled": true,
+      "channel": "#debugging",
+      "events": ["critical-error", "fix-suggested"]
+    },
+    "github": {
+      "enabled": true,
+      "events": ["issue-created"]
+    }
+  },
+
+  "output": {
+    "format": "debugging-guide",
+    "sections": [
+      "error-summary",
+      "root-cause",
+      "debugging-steps",
+      "suggested-fix",
+      "prevention"
+    ],
+    "includeCodeExamples": true,
+    "educationalTone": true
+  }
+}

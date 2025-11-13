@@ -1,0 +1,182 @@
+{
+  "$schema": "https://cursor.sh/schema/config.json",
+  "version": "1.0.0",
+  "description": "AIPaths Academy - Optimized Cursor configuration for AI development",
+
+  "ai": {
+    "enabled": true,
+    "provider": "openai",
+    "model": "gpt-4-turbo-preview",
+    "fallbackModel": "gpt-3.5-turbo",
+    "contextWindow": 16000,
+    "maxTokens": 4096,
+    "temperature": 0.7,
+    "topP": 1.0,
+
+    "features": {
+      "codeCompletion": true,
+      "inlineChat": true,
+      "chatPanel": true,
+      "commandPalette": true,
+      "codeExplanation": true,
+      "bugDetection": true,
+      "refactoring": true
+    },
+
+    "privacy": {
+      "telemetry": false,
+      "shareCodeWithProvider": false,
+      "storeConversations": true,
+      "anonymizeData": true
+    },
+
+    "context": {
+      "includeOpenFiles": true,
+      "includeWorkspaceFiles": true,
+      "includeGitHistory": false,
+      "maxFilesInContext": 10,
+      "ignorePatterns": [
+        "**/node_modules/**",
+        "**/dist/**",
+        "**/build/**",
+        "**/.git/**",
+        "**/coverage/**",
+        "**/*.log",
+        "**/*.lock"
+      ]
+    },
+
+    "suggestions": {
+      "enabled": true,
+      "triggerMode": "auto",
+      "debounceMs": 300,
+      "maxSuggestions": 3,
+      "showInlinePreview": true,
+      "acceptOnTab": true
+    }
+  },
+
+  "editor": {
+    "fontSize": 14,
+    "fontFamily": "Menlo, Monaco, 'Courier New', monospace",
+    "lineHeight": 1.6,
+    "tabSize": 2,
+    "insertSpaces": true,
+    "wordWrap": "on",
+    "minimap": {
+      "enabled": true,
+      "maxColumn": 120
+    },
+    "rulers": [80, 120],
+    "bracketPairColorization": true,
+    "inlayHints": {
+      "enabled": true,
+      "parameterNames": true,
+      "typeHints": true
+    }
+  },
+
+  "keybindings": [
+    {
+      "key": "cmd+k",
+      "command": "cursor.aiGenerateCode",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "cmd+l",
+      "command": "cursor.openAIChat",
+      "when": "!editorTextFocus"
+    },
+    {
+      "key": "cmd+shift+k",
+      "command": "cursor.aiInlineEdit",
+      "when": "editorHasSelection"
+    },
+    {
+      "key": "cmd+i",
+      "command": "cursor.quickAICommand",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "cmd+shift+.",
+      "command": "cursor.aiExplainCode",
+      "when": "editorHasSelection"
+    },
+    {
+      "key": "cmd+shift+/",
+      "command": "cursor.aiGenerateComment",
+      "when": "editorHasSelection"
+    }
+  ],
+
+  "workspace": {
+    "aiRules": [
+      "Always write clean, readable code with meaningful variable names",
+      "Include error handling and edge cases",
+      "Add TypeScript types when applicable",
+      "Write comments for complex logic",
+      "Follow project's existing code style and conventions",
+      "Prioritize performance and security",
+      "Use modern JavaScript/TypeScript features",
+      "Keep functions small and focused (single responsibility)"
+    ],
+
+    "codeStyle": {
+      "preferArrowFunctions": true,
+      "preferConst": true,
+      "semicolons": true,
+      "quotes": "single",
+      "trailingComma": "all",
+      "bracketSpacing": true
+    }
+  },
+
+  "languages": {
+    "javascript": {
+      "suggest": {
+        "autoImports": true,
+        "completeFunctionCalls": true
+      }
+    },
+    "typescript": {
+      "suggest": {
+        "autoImports": true,
+        "completeFunctionCalls": true
+      },
+      "inlayHints": {
+        "parameterNames": {
+          "enabled": "all"
+        },
+        "variableTypes": {
+          "enabled": true
+        }
+      }
+    },
+    "python": {
+      "analysis": {
+        "typeCheckingMode": "basic",
+        "autoImportCompletions": true
+      }
+    }
+  },
+
+  "git": {
+    "enabled": true,
+    "autoFetch": true,
+    "aiCommitMessages": true,
+    "showDiffInChat": true
+  },
+
+  "performance": {
+    "indexingThreads": 4,
+    "maxMemoryMB": 2048,
+    "enableCache": true,
+    "cacheDirectory": "~/.cursor/cache"
+  },
+
+  "updates": {
+    "autoCheck": true,
+    "autoDownload": false,
+    "channel": "stable"
+  }
+}

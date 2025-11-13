@@ -1,0 +1,238 @@
+{
+  "$schema": "https://ai-agents.dev/schema/agent.json",
+  "name": "documentation",
+  "version": "1.0.0",
+  "description": "Generates and maintains comprehensive documentation from codebase",
+
+  "model": {
+    "provider": "openai",
+    "name": "gpt-4-turbo-preview",
+    "fallback": "gpt-3.5-turbo",
+    "temperature": 0.5,
+    "maxTokens": 8096
+  },
+
+  "systemPrompt": "You are a technical documentation expert specializing in creating clear, comprehensive documentation for software projects. Your documentation should:\n\n1. Be clear and easy to understand for developers of all levels\n2. Include practical code examples\n3. Cover edge cases and common pitfalls\n4. Follow industry-standard documentation formats\n5. Stay up-to-date with code changes\n\nWrite in an instructional, friendly tone. Use proper Markdown formatting and structure.",
+
+  "triggers": [
+    {
+      "event": "push",
+      "enabled": true,
+      "filter": {
+        "branches": ["main", "develop"],
+        "paths": ["src/**", "lib/**"]
+      }
+    },
+    {
+      "event": "schedule",
+      "enabled": true,
+      "cron": "0 0 * * 0"
+    },
+    {
+      "event": "manual",
+      "enabled": true
+    }
+  ],
+
+  "documentTypes": [
+    {
+      "type": "readme",
+      "enabled": true,
+      "template": "standard",
+      "sections": [
+        "title",
+        "description",
+        "installation",
+        "usage",
+        "api",
+        "examples",
+        "contributing",
+        "license"
+      ]
+    },
+    {
+      "type": "api-reference",
+      "enabled": true,
+      "format": "markdown",
+      "includeExamples": true,
+      "groupBy": "module"
+    },
+    {
+      "type": "inline-comments",
+      "enabled": true,
+      "formats": ["jsdoc", "tsdoc", "docstring"],
+      "includeExamples": false
+    },
+    {
+      "type": "changelog",
+      "enabled": true,
+      "format": "keep-a-changelog",
+      "autoGenerate": true
+    },
+    {
+      "type": "architecture",
+      "enabled": false,
+      "includeDiagrams": true,
+      "format": "markdown"
+    }
+  ],
+
+  "tools": [
+    {
+      "name": "filesystem",
+      "enabled": true,
+      "permissions": ["read", "write"]
+    },
+    {
+      "name": "github",
+      "enabled": true,
+      "permissions": ["read-repo", "create-pr", "read-commits"]
+    },
+    {
+      "name": "ast-parser",
+      "enabled": true,
+      "languages": ["javascript", "typescript", "python", "go"]
+    }
+  ],
+
+  "workflow": {
+    "steps": [
+      {
+        "name": "scan-codebase",
+        "action": "filesystem.scanDirectory",
+        "config": {
+          "path": "src",
+          "recursive": true,
+          "extensions": [".js", ".ts", ".tsx", ".py", ".go"]
+        },
+        "output": "codeFiles"
+      },
+      {
+        "name": "parse-code-structure",
+        "action": "ast.parse",
+        "input": "codeFiles",
+        "output": "codeStructure"
+      },
+      {
+        "name": "extract-functions",
+        "action": "ast.extractFunctions",
+        "input": "codeStructure",
+        "output": "functions"
+      },
+      {
+        "name": "extract-classes",
+        "action": "ast.extractClasses",
+        "input": "codeStructure",
+        "output": "classes"
+      },
+      {
+        "name": "generate-descriptions",
+        "action": "llm.generate",
+        "input": ["functions", "classes"],
+        "prompt": "For each function/class, generate:\n1. A clear description of what it does\n2. Parameter documentation\n3. Return value description\n4. Usage examples\n5. Important notes or warnings",
+        "output": "descriptions"
+      },
+      {
+        "name": "generate-readme",
+        "action": "docs.generateReadme",
+        "input": "descriptions",
+        "config": {
+          "template": "standard",
+          "includeExamples": true
+        },
+        "output": "readme"
+      },
+      {
+        "name": "generate-api-docs",
+        "action": "docs.generateAPI",
+        "input": ["functions", "classes", "descriptions"],
+        "output": "apiDocs"
+      },
+      {
+        "name": "write-docs",
+        "action": "filesystem.write",
+        "input": ["readme", "apiDocs"],
+        "config": {
+          "paths": {
+            "readme": "README.md",
+            "apiDocs": "docs/API.md"
+          }
+        }
+      },
+      {
+        "name": "create-pr",
+        "action": "github.createPR",
+        "condition": "docsChanged",
+        "config": {
+          "title": "docs: Update documentation",
+          "body": "Automated documentation update by Documentation Agent",
+          "branch": "docs/auto-update"
+        }
+      }
+    ]
+  },
+
+  "templates": {
+    "readme": {
+      "title": "# {projectName}\n\n{badges}\n\n## Description\n\n{description}",
+      "installation": "## Installation\n\n```bash\n{installCommand}\n```",
+      "usage": "## Usage\n\n{usageExamples}",
+      "api": "## API Reference\n\n{apiDocs}",
+      "contributing": "## Contributing\n\nContributions are welcome! Please read our contributing guidelines.",
+      "license": "## License\n\n{license}"
+    },
+    "functionDoc": {
+      "format": "/**\n * {description}\n * \n * @param {paramType} {paramName} - {paramDescription}\n * @returns {returnType} {returnDescription}\n * @example\n * {example}\n */"
+    }
+  },
+
+  "rules": [
+    {
+      "id": "completeness",
+      "name": "Documentation Completeness",
+      "checks": {
+        "allPublicFunctionsDocumented": true,
+        "allClassesDocumented": true,
+        "allParamsDocumented": true,
+        "includeExamples": true
+      }
+    },
+    {
+      "id": "accuracy",
+      "name": "Documentation Accuracy",
+      "checks": {
+        "matchesCodeBehavior": true,
+        "upToDateWithCode": true,
+        "examplesWork": true
+      }
+    }
+  ],
+
+  "notifications": {
+    "slack": {
+      "enabled": true,
+      "channel": "#docs",
+      "events": ["docs-updated", "docs-pr-created"]
+    },
+    "github": {
+      "enabled": true,
+      "events": ["docs-pr-created"]
+    }
+  },
+
+  "performance": {
+    "maxFilesPerBatch": 10,
+    "timeout": 300000,
+    "caching": {
+      "enabled": true,
+      "ttl": 86400
+    }
+  },
+
+  "output": {
+    "format": "markdown",
+    "includeTimestamp": true,
+    "includeVersion": true,
+    "generateChangelog": true
+  }
+}
