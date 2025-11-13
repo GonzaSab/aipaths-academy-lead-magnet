@@ -89,3 +89,4 @@ All content in this repository is proprietary to AIPaths Academy.
 ## Support
 
 For questions or issues, contact the AIPaths Academy team.
+
