@@ -8,7 +8,7 @@ version: 1.0.1
 published: true
 locale: en
 order: 2
-lastUpdated: '2025-01-13'
+lastUpdated: '2025-11-14'
 author: AIPaths Academy
 downloadSize: '50 KB'
 estimatedSetupTime: '2 minutes'
