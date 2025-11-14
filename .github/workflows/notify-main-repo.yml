@@ -1,0 +1,53 @@
+name: Notify Main Repository
+
+on:
+  push:
+    branches:
+      - master  # Lead-magnet uses 'master' branch (not 'main')
+    paths:
+      # Trigger on any content changes
+      - '**/*.md'
+      - '**/*.mdx'
+      - '**/*.json'
+      - '**/agents/**'
+      # Exclude GitHub-specific files
+      - '!.github/**'
+      - '!README.md'
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send repository_dispatch to main repo
+        run: |
+          echo "Notifying main repository of resources update..."
+
+          curl -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${{ secrets.MAIN_REPO_PAT }}" \
+            https://api.github.com/repos/GonzaSab/aipaths-academy/dispatches \
+            -d '{
+              "event_type": "resources-updated",
+              "client_payload": {
+                "repository": "aipaths-academy-lead-magnet",
+                "ref": "${{ github.ref }}",
+                "sha": "${{ github.sha }}",
+                "pusher": "${{ github.actor }}",
+                "timestamp": "${{ github.event.head_commit.timestamp }}"
+              }
+            }'
+
+      - name: Confirmation
+        run: |
+          echo "✓ Successfully notified main repository"
+          echo "Repository: aipaths-academy"
+          echo "Event type: resources-updated"
+          echo "Triggered by: ${{ github.actor }}"
+          echo "Commit: ${{ github.sha }}"
+          echo ""
+          echo "Next steps (automatic):"
+          echo "1. Main repo will update content-resources submodule"
+          echo "2. Changes will be committed to main repo"
+          echo "3. Vercel will deploy the updates"
+          echo "4. Resources will be live in ~2-3 minutes"
