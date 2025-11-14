@@ -4,7 +4,7 @@ description: Ready-to-use Claude Code agents for common development tasks. Drop 
 category: ai-agents
 tags: [ai-agents, automation, claude-code, productivity, workflow]
 difficulty: beginner
-version: 1.0.0
+version: 1.0.1
 published: true
 locale: en
 order: 2
