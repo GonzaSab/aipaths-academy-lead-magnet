@@ -117,4 +117,4 @@ The agents activate automatically when relevant. Just work naturally with Claude
 - **Community**: Join our Discord at discord.gg/aipaths
 - **Email**: support@aipaths.academy
 
-<\!-- Test automation: Fri Nov 14 09:23:41 GMT 2025 -->
+{/* Test automation: Fri Nov 14 09:23:41 GMT 2025 */}

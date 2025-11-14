@@ -117,4 +117,4 @@ Los agentes se activan automáticamente cuando son relevantes. Simplemente traba
 - **Comunidad**: Únete a nuestro Discord en discord.gg/aipaths
 - **Email**: support@aipaths.academy
 
-<\!-- Test automation v2: Fri Nov 14 09:28:14 GMT 2025 -->
+{/* Test automation v2: Fri Nov 14 09:28:14 GMT 2025 */}
