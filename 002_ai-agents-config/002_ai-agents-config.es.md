@@ -116,3 +116,5 @@ Los agentes se activan automáticamente cuando son relevantes. Simplemente traba
 - **Problemas**: Repórtalos en https://github.com/anthropics/claude-code/issues
 - **Comunidad**: Únete a nuestro Discord en discord.gg/aipaths
 - **Email**: support@aipaths.academy
+
+<\!-- Test automation v2: Fri Nov 14 09:28:14 GMT 2025 -->
