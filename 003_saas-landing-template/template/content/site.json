@@ -1,0 +1,118 @@
+{
+  "name": {
+    "en": "YourSaaS",
+    "es": "TuSaaS"
+  },
+  "tagline": {
+    "en": "Your compelling tagline here",
+    "es": "Tu eslogan convincente aquí"
+  },
+  "description": {
+    "en": "A brief description of your SaaS product for SEO purposes. Keep it under 160 characters.",
+    "es": "Una breve descripción de tu producto SaaS para propósitos de SEO. Mantenlo bajo 160 caracteres."
+  },
+  "url": "https://yoursaas.com",
+  "accentColor": "#6366f1",
+  "logo": {
+    "text": {
+      "en": "YourSaaS",
+      "es": "TuSaaS"
+    },
+    "showIcon": true
+  },
+  "navigation": [
+    {
+      "label": {
+        "en": "Features",
+        "es": "Características"
+      },
+      "href": "/#features"
+    },
+    {
+      "label": {
+        "en": "How It Works",
+        "es": "Cómo Funciona"
+      },
+      "href": "/#how-it-works"
+    },
+    {
+      "label": {
+        "en": "Pricing",
+        "es": "Precios"
+      },
+      "href": "/#pricing"
+    },
+    {
+      "label": {
+        "en": "FAQ",
+        "es": "Preguntas"
+      },
+      "href": "/#faq"
+    }
+  ],
+  "footer": {
+    "links": [
+      {
+        "title": {
+          "en": "Product",
+          "es": "Producto"
+        },
+        "items": [
+          {
+            "label": {
+              "en": "Features",
+              "es": "Características"
+            },
+            "href": "/#features"
+          },
+          {
+            "label": {
+              "en": "Pricing",
+              "es": "Precios"
+            },
+            "href": "/#pricing"
+          },
+          {
+            "label": {
+              "en": "FAQ",
+              "es": "Preguntas Frecuentes"
+            },
+            "href": "/#faq"
+          }
+        ]
+      },
+      {
+        "title": {
+          "en": "Legal",
+          "es": "Legal"
+        },
+        "items": [
+          {
+            "label": {
+              "en": "Privacy Policy",
+              "es": "Política de Privacidad"
+            },
+            "href": "/privacy"
+          },
+          {
+            "label": {
+              "en": "Terms of Service",
+              "es": "Términos de Servicio"
+            },
+            "href": "/terms"
+          }
+        ]
+      }
+    ]
+  },
+  "social": {
+    "twitter": "",
+    "linkedin": "",
+    "github": ""
+  },
+  "legal": {
+    "companyName": "Your Company LLC",
+    "email": "hello@yoursaas.com",
+    "address": ""
+  }
+}

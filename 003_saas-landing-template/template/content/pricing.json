@@ -1,0 +1,184 @@
+{
+  "title": {
+    "en": "Pricing",
+    "es": "Precios"
+  },
+  "subtitle": {
+    "en": "Choose the perfect plan for your needs",
+    "es": "Elige el plan perfecto para tus necesidades"
+  },
+  "tiers": [
+    {
+      "name": {
+        "en": "Starter",
+        "es": "Inicial"
+      },
+      "description": {
+        "en": "Perfect for individuals getting started",
+        "es": "Perfecto para individuos que están comenzando"
+      },
+      "price": {
+        "monthly": 0,
+        "yearly": 0
+      },
+      "currency": "$",
+      "features": [
+        {
+          "en": "Up to 3 projects",
+          "es": "Hasta 3 proyectos"
+        },
+        {
+          "en": "Basic analytics",
+          "es": "Análisis básicos"
+        },
+        {
+          "en": "Email support",
+          "es": "Soporte por correo"
+        },
+        {
+          "en": "1GB storage",
+          "es": "1GB de almacenamiento"
+        }
+      ],
+      "cta": {
+        "text": {
+          "en": "Get Started",
+          "es": "Comenzar"
+        },
+        "href": "#waitlist"
+      },
+      "highlighted": false
+    },
+    {
+      "name": {
+        "en": "Pro",
+        "es": "Pro"
+      },
+      "description": {
+        "en": "Best for growing businesses",
+        "es": "Ideal para negocios en crecimiento"
+      },
+      "price": {
+        "monthly": 29,
+        "yearly": 290
+      },
+      "currency": "$",
+      "features": [
+        {
+          "en": "Unlimited projects",
+          "es": "Proyectos ilimitados"
+        },
+        {
+          "en": "Advanced analytics",
+          "es": "Análisis avanzados"
+        },
+        {
+          "en": "Priority support",
+          "es": "Soporte prioritario"
+        },
+        {
+          "en": "50GB storage",
+          "es": "50GB de almacenamiento"
+        }
+      ],
+      "cta": {
+        "text": {
+          "en": "Join Waitlist",
+          "es": "Unirse a Lista de Espera"
+        },
+        "href": "#waitlist"
+      },
+      "highlighted": true,
+      "badge": {
+        "en": "Most Popular",
+        "es": "Más Popular"
+      }
+    },
+    {
+      "name": {
+        "en": "Enterprise",
+        "es": "Empresarial"
+      },
+      "description": {
+        "en": "For large teams with custom needs",
+        "es": "Para equipos grandes con necesidades personalizadas"
+      },
+      "price": {
+        "monthly": 99,
+        "yearly": 990
+      },
+      "currency": "$",
+      "features": [
+        {
+          "en": "Everything in Pro",
+          "es": "Todo en Pro"
+        },
+        {
+          "en": "Unlimited storage",
+          "es": "Almacenamiento ilimitado"
+        },
+        {
+          "en": "Dedicated support",
+          "es": "Soporte dedicado"
+        },
+        {
+          "en": "Custom integrations",
+          "es": "Integraciones personalizadas"
+        }
+      ],
+      "cta": {
+        "text": {
+          "en": "Get Started",
+          "es": "Comenzar"
+        },
+        "href": "#waitlist"
+      },
+      "highlighted": false
+    }
+  ],
+  "comparison": {
+    "title": {
+      "en": "Compare plans",
+      "es": "Comparar planes"
+    },
+    "showComparison": false
+  },
+  "faq": {
+    "title": {
+      "en": "Pricing FAQ",
+      "es": "Preguntas Frecuentes sobre Precios"
+    },
+    "items": [
+      {
+        "question": {
+          "en": "Can I change plans later?",
+          "es": "¿Puedo cambiar de plan después?"
+        },
+        "answer": {
+          "en": "Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately.",
+          "es": "Sí, puedes mejorar o reducir tu plan en cualquier momento. Los cambios tienen efecto inmediato."
+        }
+      },
+      {
+        "question": {
+          "en": "Is there a free trial?",
+          "es": "¿Hay una prueba gratuita?"
+        },
+        "answer": {
+          "en": "Yes, all paid plans come with a 14-day free trial. No credit card required.",
+          "es": "Sí, todos los planes de pago incluyen una prueba gratuita de 14 días. No se requiere tarjeta de crédito."
+        }
+      },
+      {
+        "question": {
+          "en": "What payment methods do you accept?",
+          "es": "¿Qué métodos de pago aceptan?"
+        },
+        "answer": {
+          "en": "We accept all major credit cards, PayPal, and bank transfers for annual plans.",
+          "es": "Aceptamos todas las tarjetas de crédito principales, PayPal y transferencias bancarias para planes anuales."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "privacy": {
+    "title": {
+      "en": "Privacy Policy",
+      "es": "Política de Privacidad"
+    },
+    "lastUpdated": "2024-01-01",
+    "sections": [
+      {
+        "title": {
+          "en": "Introduction",
+          "es": "Introducción"
+        },
+        "content": {
+          "en": "At [Company Name], we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service.",
+          "es": "En [Nombre de la Empresa], nos tomamos tu privacidad en serio. Esta Política de Privacidad explica cómo recopilamos, usamos, divulgamos y protegemos tu información cuando usas nuestro servicio."
+        }
+      },
+      {
+        "title": {
+          "en": "Information We Collect",
+          "es": "Información que Recopilamos"
+        },
+        "content": {
+          "en": "We collect information you provide directly to us, such as when you create an account, subscribe to our waitlist, or contact us. This may include your name, email address, and any other information you choose to provide.",
+          "es": "Recopilamos información que nos proporcionas directamente, como cuando creas una cuenta, te suscribes a nuestra lista de espera o nos contactas. Esto puede incluir tu nombre, dirección de correo electrónico y cualquier otra información que elijas proporcionar."
+        }
+      },
+      {
+        "title": {
+          "en": "How We Use Your Information",
+          "es": "Cómo Usamos tu Información"
+        },
+        "content": {
+          "en": "We use the information we collect to provide, maintain, and improve our services, to communicate with you, to send you updates and marketing communications (with your consent), and to protect our services and users.",
+          "es": "Usamos la información que recopilamos para proporcionar, mantener y mejorar nuestros servicios, para comunicarnos contigo, para enviarte actualizaciones y comunicaciones de marketing (con tu consentimiento), y para proteger nuestros servicios y usuarios."
+        }
+      },
+      {
+        "title": {
+          "en": "Information Sharing",
+          "es": "Compartir Información"
+        },
+        "content": {
+          "en": "We do not sell, trade, or rent your personal information to third parties. We may share your information with service providers who assist us in operating our service, subject to confidentiality agreements.",
+          "es": "No vendemos, intercambiamos ni alquilamos tu información personal a terceros. Podemos compartir tu información con proveedores de servicios que nos ayudan a operar nuestro servicio, sujeto a acuerdos de confidencialidad."
+        }
+      },
+      {
+        "title": {
+          "en": "Data Security",
+          "es": "Seguridad de Datos"
+        },
+        "content": {
+          "en": "We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.",
+          "es": "Implementamos medidas técnicas y organizativas apropiadas para proteger tu información personal contra acceso no autorizado, alteración, divulgación o destrucción."
+        }
+      },
+      {
+        "title": {
+          "en": "Your Rights",
+          "es": "Tus Derechos"
+        },
+        "content": {
+          "en": "You have the right to access, correct, or delete your personal information. You can also opt out of marketing communications at any time by clicking the unsubscribe link in our emails.",
+          "es": "Tienes derecho a acceder, corregir o eliminar tu información personal. También puedes optar por no recibir comunicaciones de marketing en cualquier momento haciendo clic en el enlace de cancelar suscripción en nuestros correos."
+        }
+      },
+      {
+        "title": {
+          "en": "Contact Us",
+          "es": "Contáctanos"
+        },
+        "content": {
+          "en": "If you have questions about this Privacy Policy, please contact us at [email].",
+          "es": "Si tienes preguntas sobre esta Política de Privacidad, por favor contáctanos en [correo electrónico]."
+        }
+      }
+    ]
+  },
+  "terms": {
+    "title": {
+      "en": "Terms of Service",
+      "es": "Términos de Servicio"
+    },
+    "lastUpdated": "2024-01-01",
+    "sections": [
+      {
+        "title": {
+          "en": "Agreement to Terms",
+          "es": "Acuerdo con los Términos"
+        },
+        "content": {
+          "en": "By accessing or using our service, you agree to be bound by these Terms of Service. If you disagree with any part of the terms, you may not access the service.",
+          "es": "Al acceder o usar nuestro servicio, aceptas estar sujeto a estos Términos de Servicio. Si no estás de acuerdo con alguna parte de los términos, no puedes acceder al servicio."
+        }
+      },
+      {
+        "title": {
+          "en": "Description of Service",
+          "es": "Descripción del Servicio"
+        },
+        "content": {
+          "en": "[Company Name] provides [brief description of service]. We reserve the right to modify or discontinue the service at any time without notice.",
+          "es": "[Nombre de la Empresa] proporciona [breve descripción del servicio]. Nos reservamos el derecho de modificar o discontinuar el servicio en cualquier momento sin previo aviso."
+        }
+      },
+      {
+        "title": {
+          "en": "User Accounts",
+          "es": "Cuentas de Usuario"
+        },
+        "content": {
+          "en": "When you create an account, you must provide accurate and complete information. You are responsible for maintaining the confidentiality of your account and password.",
+          "es": "Cuando creas una cuenta, debes proporcionar información precisa y completa. Eres responsable de mantener la confidencialidad de tu cuenta y contraseña."
+        }
+      },
+      {
+        "title": {
+          "en": "Acceptable Use",
+          "es": "Uso Aceptable"
+        },
+        "content": {
+          "en": "You agree not to use our service for any unlawful purpose or in any way that could damage, disable, or impair our service. You may not attempt to gain unauthorized access to any part of the service.",
+          "es": "Aceptas no usar nuestro servicio para ningún propósito ilegal o de ninguna manera que pueda dañar, deshabilitar o perjudicar nuestro servicio. No puedes intentar obtener acceso no autorizado a ninguna parte del servicio."
+        }
+      },
+      {
+        "title": {
+          "en": "Intellectual Property",
+          "es": "Propiedad Intelectual"
+        },
+        "content": {
+          "en": "The service and its original content, features, and functionality are owned by [Company Name] and are protected by international copyright, trademark, and other intellectual property laws.",
+          "es": "El servicio y su contenido original, características y funcionalidad son propiedad de [Nombre de la Empresa] y están protegidos por leyes internacionales de derechos de autor, marcas comerciales y otras leyes de propiedad intelectual."
+        }
+      },
+      {
+        "title": {
+          "en": "Limitation of Liability",
+          "es": "Limitación de Responsabilidad"
+        },
+        "content": {
+          "en": "In no event shall [Company Name] be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the service.",
+          "es": "En ningún caso [Nombre de la Empresa] será responsable de ningún daño indirecto, incidental, especial, consecuente o punitivo que resulte de tu uso o incapacidad para usar el servicio."
+        }
+      },
+      {
+        "title": {
+          "en": "Changes to Terms",
+          "es": "Cambios a los Términos"
+        },
+        "content": {
+          "en": "We reserve the right to modify these terms at any time. We will notify users of any material changes by posting the new terms on this page.",
+          "es": "Nos reservamos el derecho de modificar estos términos en cualquier momento. Notificaremos a los usuarios de cualquier cambio material publicando los nuevos términos en esta página."
+        }
+      },
+      {
+        "title": {
+          "en": "Contact Us",
+          "es": "Contáctanos"
+        },
+        "content": {
+          "en": "If you have questions about these Terms of Service, please contact us at [email].",
+          "es": "Si tienes preguntas sobre estos Términos de Servicio, por favor contáctanos en [correo electrónico]."
+        }
+      }
+    ]
+  }
+}

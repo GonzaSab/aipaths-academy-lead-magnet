@@ -1,0 +1,105 @@
+{
+  "title": {
+    "en": "About Us",
+    "es": "Acerca de Nosotros"
+  },
+  "subtitle": {
+    "en": "Our mission is to make [your domain] accessible to everyone",
+    "es": "Nuestra misión es hacer [tu dominio] accesible para todos"
+  },
+  "story": {
+    "title": {
+      "en": "Our Story",
+      "es": "Nuestra Historia"
+    },
+    "content": [
+      {
+        "en": "We started with a simple idea: there had to be a better way to [solve problem]. After experiencing the frustration firsthand, we decided to build the solution we wished existed.",
+        "es": "Comenzamos con una idea simple: tenía que haber una mejor manera de [resolver el problema]. Después de experimentar la frustración de primera mano, decidimos construir la solución que deseábamos que existiera."
+      },
+      {
+        "en": "Today, we're on a mission to help [target audience] achieve [desired outcome] without the complexity and overhead of traditional solutions.",
+        "es": "Hoy, estamos en una misión para ayudar a [audiencia objetivo] a lograr [resultado deseado] sin la complejidad y sobrecarga de las soluciones tradicionales."
+      },
+      {
+        "en": "We believe in building tools that are powerful yet simple, giving you everything you need and nothing you don't.",
+        "es": "Creemos en construir herramientas que sean poderosas pero simples, dándote todo lo que necesitas y nada que no necesites."
+      }
+    ]
+  },
+  "values": {
+    "title": {
+      "en": "Our Values",
+      "es": "Nuestros Valores"
+    },
+    "items": [
+      {
+        "icon": "heart",
+        "title": {
+          "en": "Customer First",
+          "es": "El Cliente Primero"
+        },
+        "description": {
+          "en": "Every decision we make starts with our customers' needs.",
+          "es": "Cada decisión que tomamos comienza con las necesidades de nuestros clientes."
+        }
+      },
+      {
+        "icon": "target",
+        "title": {
+          "en": "Simplicity",
+          "es": "Simplicidad"
+        },
+        "description": {
+          "en": "We believe the best solutions are the simplest ones.",
+          "es": "Creemos que las mejores soluciones son las más simples."
+        }
+      },
+      {
+        "icon": "shield",
+        "title": {
+          "en": "Trust",
+          "es": "Confianza"
+        },
+        "description": {
+          "en": "We're transparent about what we do and how we do it.",
+          "es": "Somos transparentes sobre lo que hacemos y cómo lo hacemos."
+        }
+      },
+      {
+        "icon": "rocket",
+        "title": {
+          "en": "Innovation",
+          "es": "Innovación"
+        },
+        "description": {
+          "en": "We're always looking for better ways to solve problems.",
+          "es": "Siempre estamos buscando mejores formas de resolver problemas."
+        }
+      }
+    ]
+  },
+  "team": {
+    "title": {
+      "en": "Meet the Team",
+      "es": "Conoce al Equipo"
+    },
+    "showTeam": false,
+    "members": []
+  },
+  "cta": {
+    "title": {
+      "en": "Ready to get started?",
+      "es": "¿Listo para comenzar?"
+    },
+    "subtitle": {
+      "en": "Join thousands of others who are already using our platform.",
+      "es": "Únete a miles de personas que ya están usando nuestra plataforma."
+    },
+    "buttonText": {
+      "en": "Join the Waitlist",
+      "es": "Únete a la Lista de Espera"
+    },
+    "buttonHref": "/#waitlist"
+  }
+}

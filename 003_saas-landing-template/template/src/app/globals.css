@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Accent color - RGB values (change this one value to update entire site) */
+  --accent: 137 66 43; /* Orange #89422B */
+  --accent-foreground: 255 255 255;
+}
+
+/* Light mode (default) */
+:root,
+.light {
+  --background: 255 255 255;
+  --foreground: 10 10 10;
+  --text: 10 10 10;
+  --muted: 245 245 245;
+  --muted-foreground: 115 115 115;
+  --border: 229 229 229;
+  --card: 255 255 255;
+}
+
+/* Dark mode */
+.dark {
+  --background: 10 10 10;
+  --foreground: 250 250 250;
+  --text: 250 250 250;
+  --muted: 38 38 38;
+  --muted-foreground: 163 163 163;
+  --border: 50 50 50;
+  --card: 23 23 23;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: rgb(var(--foreground));
+  background: rgb(var(--background));
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--muted-foreground));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--accent));
+}
