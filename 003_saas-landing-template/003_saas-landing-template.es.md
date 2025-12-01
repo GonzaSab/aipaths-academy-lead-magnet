@@ -1,60 +1,68 @@
 ---
 title: Plantilla de Landing Page SaaS
-description: Una plantilla Next.js lista para produccion que puedes personalizar completamente con solo 3 prompts de IA. Bilingue, lista para Supabase, despliega en 20 minutos.
+description: Una plantilla Next.js 16 lista para produccion que puedes personalizar completamente con solo 3 prompts de IA. Bilingue, modo oscuro, lista para Supabase, despliega en 20 minutos.
 category: templates
 tags: [nextjs, saas, landing-page, claude-code, automation, templates]
 difficulty: beginner
-version: 1.0.0
+version: 2.0.0
 published: true
 locale: es
 order: 3
-lastUpdated: '2025-11-27'
+lastUpdated: '2025-12-01'
 author: AIPaths Academy
-downloadSize: '250 KB'
+downloadSize: '170 KB'
 estimatedSetupTime: '20 minutos'
 prerequisites:
   - Node.js 18+ instalado
   - Claude Code o asistente de IA similar
-  - Cuenta de Supabase (el tier gratuito funciona)
+  - Cuenta de Supabase (opcional - usa localStorage como respaldo)
   - Cuenta de Vercel para despliegue (opcional)
 files:
   - path: template/
-    description: Proyecto Next.js completo con todos los archivos fuente
-  - path: template/PROMPTS.md
+    description: Proyecto Next.js 16 completo con todos los archivos fuente
+  - path: template/prompts/PROMPTS.md
     description: El flujo de 3 prompts en ingles
-  - path: template/PROMPTS_ES.md
+  - path: template/prompts/PROMPTS_ES.md
     description: El flujo de 3 prompts en espanol
-  - path: template/content/
-    description: Archivos JSON para todo el contenido (bilingue)
+  - path: template/prompts/EXAMPLE_ANSWERS.md
+    description: Respuestas de ejemplo para guiarte en el prompt de descubrimiento
+  - path: template/src/content/
+    description: Archivos JSON para todo el contenido (bilingue EN/ES)
   - path: README.md
     description: Instrucciones rapidas de configuracion
 ---
 
 ## Que Es Esto?
 
-Una plantilla de landing page completa y lista para produccion construida con Next.js 14, Tailwind CSS y Supabase. La magia? Puedes personalizarla completamente para CUALQUIER idea de SaaS usando solo **3 prompts de IA** en aproximadamente 20 minutos.
+Una plantilla de landing page completa y lista para produccion construida con **Next.js 16**, **React 19**, **Tailwind CSS v4** y **Supabase**. La magia? Puedes personalizarla completamente para CUALQUIER idea de SaaS usando solo **3 prompts de IA** en aproximadamente 20 minutos.
 
 No mas pasar dias en landing pages. No mas contratar disenadores para validacion. Solo describe tu idea y deja que la IA genere todo el contenido.
 
 ## Lo Que Obtienes
 
-### Una Landing Page Completa
+### Una Landing de Pagina Unica Completa
 
-- **Inicio**: Seccion hero, grid de caracteristicas, pasos de como funciona, CTA de waitlist
+Todas las secciones en una pagina hermosa:
+- **Hero**: Titular convincente con acentos degradados y CTAs
+- **Caracteristicas**: Grid de 6 items con iconos
+- **Como Funciona**: Desglose de proceso en 4 pasos
 - **Precios**: Tiers configurables con listas de caracteristicas
+- **Waitlist**: Formulario de captura de email (Supabase o respaldo localStorage)
+- **FAQ**: Seccion acordeon expandible
 - **Nosotros**: Historia y valores de la empresa
 - **Contacto**: Formulario de contacto funcional
-- **FAQ**: Seccion expandible de preguntas/respuestas
-- **Legal**: Politica de Privacidad y Terminos de Servicio
+- **Legal**: Politica de Privacidad y Terminos de Servicio (modales/paginas separadas)
 
 ### Caracteristicas Incluidas
 
-- **Bilingue (EN/ES)**: Toggle de idioma en la navegacion, todo el contenido soporta ambos idiomas
-- **Lista para Waitlist**: Formulario de captura de email conectado a Supabase
-- **Un Solo Color de Acento**: Cambia una variable CSS para cambiar el branding de todo el sitio
+- **Bilingue (EN/ES)**: Selector de idioma en navbar, todo el contenido JSON soporta ambos idiomas
+- **Modo Oscuro**: Toggle con deteccion de preferencia del sistema
+- **Waitlist con Respaldo**: Funciona con Supabase o automaticamente usa localStorage
+- **Branding con Degradados**: Cambia dos variables CSS (`--gradient-from`, `--gradient-to`) para cambiar marca usando colores oklch
+- **Animaciones Modernas**: Transiciones suaves con Framer Motion
 - **Responsive para Movil**: Se ve genial en todos los dispositivos
 - **TypeScript**: Completamente tipado para confianza del desarrollador
-- **Listo para Modo Oscuro**: Las variables CSS hacen facil el theming
+- **Componentes shadcn/ui**: Componentes UI accesibles pre-construidos
 
 ### El Flujo de 3 Prompts
 
@@ -66,9 +74,12 @@ No mas pasar dias en landing pages. No mas contratar disenadores para validacion
 
 ## Stack Tecnologico
 
-- **Framework**: Next.js 14 (App Router)
-- **Estilos**: Tailwind CSS
-- **Base de Datos**: Supabase (PostgreSQL)
+- **Framework**: Next.js 16 (App Router)
+- **React**: v19 con las ultimas caracteristicas
+- **Estilos**: Tailwind CSS v4 con colores oklch
+- **Animaciones**: Framer Motion
+- **Componentes UI**: shadcn/ui (primitivos Radix)
+- **Base de Datos**: Supabase (PostgreSQL) con respaldo localStorage
 - **Iconos**: Lucide React
 - **Lenguaje**: TypeScript
 - **Despliegue**: Listo para Vercel
@@ -83,9 +94,12 @@ cd template
 npm install
 ```
 
-### 2. Configurar Supabase
+### 2. Configurar Supabase (Opcional)
 
-Crea un proyecto gratuito en Supabase y ejecuta este SQL:
+La plantilla funciona sin Supabase - automaticamente usa localStorage como respaldo. Pero si quieres que los datos de email se guarden en una base de datos:
+
+1. Crea un proyecto gratuito en Supabase
+2. Ejecuta este SQL en el Editor SQL:
 
 ```sql
 create table waitlist (
@@ -101,7 +115,7 @@ create policy "Allow anonymous inserts" on waitlist
   for insert with check (true);
 ```
 
-### 3. Configurar Entorno
+3. Configura el entorno:
 
 ```bash
 cp .env.example .env.local
@@ -109,15 +123,15 @@ cp .env.example .env.local
 
 Agrega tus credenciales de Supabase a `.env.local`.
 
-### 4. Ejecutar el Flujo de 3 Prompts
+### 3. Ejecutar el Flujo de 3 Prompts
 
-Abre el proyecto en Claude Code (o tu asistente de IA) y sigue `PROMPTS_ES.md`:
+Abre el proyecto en Claude Code (o tu asistente de IA) y sigue `prompts/PROMPTS_ES.md`:
 
-1. **Prompt 1**: Responde preguntas sobre tu producto
-2. **Prompt 2**: La IA genera todo el contenido
-3. **Prompt 3**: Revisa y despliega
+1. **Prompt 1**: Responde preguntas sobre tu producto (ver `EXAMPLE_ANSWERS.md` como guia)
+2. **Prompt 2**: La IA genera todo el contenido JSON (bilingue EN/ES)
+3. **Prompt 3**: Revisa, prueba y despliega
 
-### 5. Desplegar en Vercel
+### 4. Desplegar en Vercel
 
 ```bash
 npm install -g vercel

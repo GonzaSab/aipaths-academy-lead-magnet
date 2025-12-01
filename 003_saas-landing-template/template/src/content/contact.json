@@ -1,0 +1,78 @@
+{
+  "sectionTitle": {
+    "en": "Get In Touch",
+    "es": "Contáctanos"
+  },
+  "sectionDescription": {
+    "en": "[Brief message encouraging contact - e.g., 'Have questions? We'd love to hear from you.']",
+    "es": "[Breve mensaje alentando el contacto - ej., '¿Tienes preguntas? Nos encantaría saber de ti.']"
+  },
+  "form": {
+    "fields": [
+      {
+        "name": "name",
+        "type": "text",
+        "label": {
+          "en": "Name",
+          "es": "Nombre"
+        },
+        "placeholder": {
+          "en": "Your name",
+          "es": "Tu nombre"
+        },
+        "required": true
+      },
+      {
+        "name": "email",
+        "type": "email",
+        "label": {
+          "en": "Email",
+          "es": "Correo electrónico"
+        },
+        "placeholder": {
+          "en": "your.email@example.com",
+          "es": "tu.email@ejemplo.com"
+        },
+        "required": true
+      },
+      {
+        "name": "subject",
+        "type": "text",
+        "label": {
+          "en": "Subject",
+          "es": "Asunto"
+        },
+        "placeholder": {
+          "en": "What is this about?",
+          "es": "¿De qué se trata?"
+        },
+        "required": true
+      },
+      {
+        "name": "message",
+        "type": "textarea",
+        "label": {
+          "en": "Message",
+          "es": "Mensaje"
+        },
+        "placeholder": {
+          "en": "Tell us more...",
+          "es": "Cuéntanos más..."
+        },
+        "required": true,
+        "rows": 5
+      }
+    ],
+    "submitText": {
+      "en": "Send Message",
+      "es": "Enviar Mensaje"
+    }
+  },
+  "contactInfo": {
+    "email": "hello@yourcompany.com",
+    "responseTime": {
+      "en": "We typically respond within 24 hours",
+      "es": "Normalmente respondemos en 24 horas"
+    }
+  }
+}

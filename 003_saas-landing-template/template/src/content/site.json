@@ -1,0 +1,90 @@
+{
+  "brand": {
+    "name": "[Your Brand Name]",
+    "description": {
+      "en": "[Your product description - what problem it solves]",
+      "es": "[Descripción de tu producto - qué problema resuelve]"
+    }
+  },
+  "tagline": {
+    "en": "[Your product tagline here - what makes you unique]",
+    "es": "[Tu eslogan aquí - qué te hace único]"
+  },
+  "navigation": [
+    {
+      "label": {
+        "en": "Home",
+        "es": "Inicio"
+      },
+      "href": "/"
+    },
+    {
+      "label": {
+        "en": "Features",
+        "es": "Características"
+      },
+      "href": "#features"
+    },
+    {
+      "label": {
+        "en": "Pricing",
+        "es": "Precios"
+      },
+      "href": "#pricing"
+    },
+    {
+      "label": {
+        "en": "FAQ",
+        "es": "Preguntas"
+      },
+      "href": "#faq"
+    },
+    {
+      "label": {
+        "en": "About",
+        "es": "Acerca"
+      },
+      "href": "#about"
+    },
+    {
+      "label": {
+        "en": "Contact",
+        "es": "Contacto"
+      },
+      "href": "#contact"
+    }
+  ],
+  "footer": {
+    "copyright": {
+      "en": "© 2024 [Your Company Name]. All rights reserved.",
+      "es": "© 2024 [Nombre de Tu Empresa]. Todos los derechos reservados."
+    },
+    "socialLinks": [
+      {
+        "platform": "twitter",
+        "url": "https://twitter.com/yourcompany",
+        "icon": "Twitter"
+      },
+      {
+        "platform": "linkedin",
+        "url": "https://linkedin.com/company/yourcompany",
+        "icon": "Linkedin"
+      },
+      {
+        "platform": "github",
+        "url": "https://github.com/yourcompany",
+        "icon": "Github"
+      }
+    ]
+  },
+  "meta": {
+    "titleTemplate": {
+      "en": "%s | [Your Brand Name]",
+      "es": "%s | [Nombre de Tu Marca]"
+    },
+    "description": {
+      "en": "[Describe your product in 150-160 characters - what problem it solves and who it's for]",
+      "es": "[Describe tu producto en 150-160 caracteres - qué problema resuelve y para quién es]"
+    }
+  }
+}

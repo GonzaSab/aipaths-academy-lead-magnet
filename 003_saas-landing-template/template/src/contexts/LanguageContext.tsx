@@ -1,56 +1,53 @@
-"use client";
+'use client';
 
 import {
   createContext,
   useContext,
   useState,
   useEffect,
-  ReactNode,
-} from "react";
-
-export type Language = "en" | "es";
-
-type TranslatableString = { en: string; es: string };
+  type ReactNode,
+} from 'react';
+import type { Language, BilingualText } from '@/types/content';
 
 interface LanguageContextType {
-  lang: Language;
+  currentLang: Language;
   setLang: (lang: Language) => void;
-  t: (obj: TranslatableString | string) => string;
+  t: (text: BilingualText) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
   undefined
 );
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Language>("en");
+interface LanguageProviderProps {
+  children: ReactNode;
+}
+
+export function LanguageProvider({ children }: LanguageProviderProps) {
+  const [currentLang, setCurrentLang] = useState<Language>('en');
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    // Check localStorage first, then browser language
-    const saved = localStorage.getItem("lang") as Language;
-    if (saved && (saved === "en" || saved === "es")) {
-      setLangState(saved);
-    } else {
-      // Detect browser language
-      const browserLang = navigator.language.startsWith("es") ? "es" : "en";
-      setLangState(browserLang);
+    setIsClient(true);
+    const stored = localStorage.getItem('language') as Language | null;
+    if (stored && (stored === 'en' || stored === 'es')) {
+      setCurrentLang(stored);
     }
   }, []);
 
-  const setLang = (newLang: Language) => {
-    setLangState(newLang);
-    if (typeof window !== "undefined") {
-      localStorage.setItem("lang", newLang);
+  const setLang = (lang: Language) => {
+    setCurrentLang(lang);
+    if (isClient) {
+      localStorage.setItem('language', lang);
     }
   };
 
-  const t = (obj: TranslatableString | string): string => {
-    if (typeof obj === "string") return obj;
-    return obj[lang] || obj.en || "";
+  const t = (text: BilingualText): string => {
+    return text[currentLang];
   };
 
   return (
-    <LanguageContext.Provider value={{ lang, setLang, t }}>
+    <LanguageContext.Provider value={{ currentLang, setLang, t }}>
       {children}
     </LanguageContext.Provider>
   );
@@ -58,8 +55,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
 export function useLanguage() {
   const context = useContext(LanguageContext);
-  if (!context) {
-    throw new Error("useLanguage must be used within a LanguageProvider");
+  if (context === undefined) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;
 }

@@ -1,0 +1,58 @@
+{
+  "sectionTitle": {
+    "en": "Frequently Asked Questions",
+    "es": "Preguntas Frecuentes"
+  },
+  "questions": [
+    {
+      "question": {
+        "en": "[Question 1 - e.g., How does the free trial work?]",
+        "es": "[Pregunta 1 - ej., ¿Cómo funciona la prueba gratuita?]"
+      },
+      "answer": {
+        "en": "[Answer to question 1 - be clear and helpful. Address common concerns and include relevant details like duration, features included, payment requirements, etc.]",
+        "es": "[Respuesta a pregunta 1 - sé claro y útil. Aborda preocupaciones comunes e incluye detalles relevantes como duración, características incluidas, requisitos de pago, etc.]"
+      }
+    },
+    {
+      "question": {
+        "en": "[Question 2 - e.g., Can I change my plan later?]",
+        "es": "[Pregunta 2 - ej., ¿Puedo cambiar mi plan después?]"
+      },
+      "answer": {
+        "en": "[Answer to question 2 - explain the process and any important details about upgrading/downgrading, prorating, etc.]",
+        "es": "[Respuesta a pregunta 2 - explica el proceso y cualquier detalle importante sobre actualización/reducción, prorrateo, etc.]"
+      }
+    },
+    {
+      "question": {
+        "en": "[Question 3 - e.g., What payment methods do you accept?]",
+        "es": "[Pregunta 3 - ej., ¿Qué métodos de pago aceptan?]"
+      },
+      "answer": {
+        "en": "[Answer to question 3 - list accepted payment methods and any relevant policies]",
+        "es": "[Respuesta a pregunta 3 - enumera métodos de pago aceptados y políticas relevantes]"
+      }
+    },
+    {
+      "question": {
+        "en": "[Question 4 - e.g., Is my data secure?]",
+        "es": "[Pregunta 4 - ej., ¿Mis datos están seguros?]"
+      },
+      "answer": {
+        "en": "[Answer to question 4 - address security concerns with specific details about encryption, compliance, backups, etc.]",
+        "es": "[Respuesta a pregunta 4 - aborda preocupaciones de seguridad con detalles específicos sobre encriptación, cumplimiento, respaldos, etc.]"
+      }
+    },
+    {
+      "question": {
+        "en": "[Question 5 - e.g., Do you offer refunds?]",
+        "es": "[Pregunta 5 - ej., ¿Ofrecen reembolsos?]"
+      },
+      "answer": {
+        "en": "[Answer to question 5 - clearly state your refund policy with timeframes and conditions]",
+        "es": "[Respuesta a pregunta 5 - establece claramente tu política de reembolso con plazos y condiciones]"
+      }
+    }
+  ]
+}

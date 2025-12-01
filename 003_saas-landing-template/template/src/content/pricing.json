@@ -1,0 +1,138 @@
+{
+  "sectionTitle": {
+    "en": "Simple, Transparent Pricing",
+    "es": "Precios Simples y Transparentes"
+  },
+  "sectionDescription": {
+    "en": "[Explain your pricing philosophy - e.g., 'Choose the plan that fits your needs']",
+    "es": "[Explica tu filosofía de precios - ej., 'Elige el plan que se adapte a tus necesidades']"
+  },
+  "tiers": [
+    {
+      "name": {
+        "en": "Free",
+        "es": "Gratis"
+      },
+      "price": "Free",
+      "period": {
+        "en": "forever",
+        "es": "para siempre"
+      },
+      "description": {
+        "en": "[Perfect for individuals getting started]",
+        "es": "[Perfecto para individuos que comienzan]"
+      },
+      "features": [
+        {
+          "en": "[Feature 1 - e.g., Up to 3 projects]",
+          "es": "[Característica 1 - ej., Hasta 3 proyectos]"
+        },
+        {
+          "en": "[Feature 2 - e.g., Basic analytics]",
+          "es": "[Característica 2 - ej., Análisis básicos]"
+        },
+        {
+          "en": "[Feature 3 - e.g., Community support]",
+          "es": "[Característica 3 - ej., Soporte comunitario]"
+        },
+        {
+          "en": "[Feature 4 - e.g., 1GB storage]",
+          "es": "[Característica 4 - ej., 1GB almacenamiento]"
+        }
+      ],
+      "ctaText": {
+        "en": "Get Started",
+        "es": "Comenzar"
+      },
+      "highlighted": false
+    },
+    {
+      "name": {
+        "en": "Pro",
+        "es": "Pro"
+      },
+      "price": 29,
+      "period": {
+        "en": "/month",
+        "es": "/mes"
+      },
+      "description": {
+        "en": "[Best for growing teams and businesses]",
+        "es": "[Mejor para equipos y negocios en crecimiento]"
+      },
+      "features": [
+        {
+          "en": "[Feature 1 - e.g., Unlimited projects]",
+          "es": "[Característica 1 - ej., Proyectos ilimitados]"
+        },
+        {
+          "en": "[Feature 2 - e.g., Advanced analytics]",
+          "es": "[Característica 2 - ej., Análisis avanzados]"
+        },
+        {
+          "en": "[Feature 3 - e.g., Priority support]",
+          "es": "[Característica 3 - ej., Soporte prioritario]"
+        },
+        {
+          "en": "[Feature 4 - e.g., 100GB storage]",
+          "es": "[Característica 4 - ej., 100GB almacenamiento]"
+        },
+        {
+          "en": "[Feature 5 - e.g., Custom integrations]",
+          "es": "[Característica 5 - ej., Integraciones personalizadas]"
+        }
+      ],
+      "ctaText": {
+        "en": "Start Free Trial",
+        "es": "Comenzar Prueba Gratis"
+      },
+      "highlighted": true
+    },
+    {
+      "name": {
+        "en": "Team",
+        "es": "Equipo"
+      },
+      "price": 99,
+      "period": {
+        "en": "/month",
+        "es": "/mes"
+      },
+      "description": {
+        "en": "[For large teams with advanced needs]",
+        "es": "[Para equipos grandes con necesidades avanzadas]"
+      },
+      "features": [
+        {
+          "en": "[Feature 1 - e.g., Everything in Pro]",
+          "es": "[Característica 1 - ej., Todo en Pro]"
+        },
+        {
+          "en": "[Feature 2 - e.g., Up to 20 team members]",
+          "es": "[Característica 2 - ej., Hasta 20 miembros del equipo]"
+        },
+        {
+          "en": "[Feature 3 - e.g., Dedicated support]",
+          "es": "[Característica 3 - ej., Soporte dedicado]"
+        },
+        {
+          "en": "[Feature 4 - e.g., 1TB storage]",
+          "es": "[Característica 4 - ej., 1TB almacenamiento]"
+        },
+        {
+          "en": "[Feature 5 - e.g., Advanced security]",
+          "es": "[Característica 5 - ej., Seguridad avanzada]"
+        },
+        {
+          "en": "[Feature 6 - e.g., Custom SLA]",
+          "es": "[Característica 6 - ej., SLA personalizado]"
+        }
+      ],
+      "ctaText": {
+        "en": "Contact Sales",
+        "es": "Contactar Ventas"
+      },
+      "highlighted": false
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "sectionTitle": {
+    "en": "About Us",
+    "es": "Acerca de Nosotros"
+  },
+  "story": {
+    "title": {
+      "en": "[Our Story Title - e.g., 'Why We Built This']",
+      "es": "[Título de Nuestra Historia - ej., 'Por Qué Construimos Esto']"
+    },
+    "content": [
+      {
+        "en": "[First paragraph - Explain the problem you identified or the inspiration behind your product. Be authentic and relatable. 2-3 sentences.]",
+        "es": "[Primer párrafo - Explica el problema que identificaste o la inspiración detrás de tu producto. Sé auténtico y cercano. 2-3 oraciones.]"
+      },
+      {
+        "en": "[Second paragraph - Describe your journey or approach to solving the problem. Share what makes your solution unique. 2-3 sentences.]",
+        "es": "[Segundo párrafo - Describe tu viaje o enfoque para resolver el problema. Comparte qué hace única tu solución. 2-3 oraciones.]"
+      },
+      {
+        "en": "[Third paragraph - Share your vision for the future and your commitment to users. End with an inspiring note. 2-3 sentences.]",
+        "es": "[Tercer párrafo - Comparte tu visión del futuro y tu compromiso con los usuarios. Termina con una nota inspiradora. 2-3 oraciones.]"
+      }
+    ]
+  },
+  "valuesTitle": {
+    "en": "Our Values",
+    "es": "Nuestros Valores"
+  },
+  "values": [
+    {
+      "title": {
+        "en": "[Value 1 Title - e.g., 'Customer First']",
+        "es": "[Título Valor 1 - ej., 'Cliente Primero']"
+      },
+      "description": {
+        "en": "[Describe this core value and how it influences your work - 1-2 sentences]",
+        "es": "[Describe este valor fundamental y cómo influye en tu trabajo - 1-2 oraciones]"
+      }
+    },
+    {
+      "title": {
+        "en": "[Value 2 Title - e.g., 'Innovation']",
+        "es": "[Título Valor 2 - ej., 'Innovación']"
+      },
+      "description": {
+        "en": "[Describe this core value and how it influences your work - 1-2 sentences]",
+        "es": "[Describe este valor fundamental y cómo influye en tu trabajo - 1-2 oraciones]"
+      }
+    },
+    {
+      "title": {
+        "en": "[Value 3 Title - e.g., 'Transparency']",
+        "es": "[Título Valor 3 - ej., 'Transparencia']"
+      },
+      "description": {
+        "en": "[Describe this core value and how it influences your work - 1-2 sentences]",
+        "es": "[Describe este valor fundamental y cómo influye en tu trabajo - 1-2 oraciones]"
+      }
+    }
+  ]
+}

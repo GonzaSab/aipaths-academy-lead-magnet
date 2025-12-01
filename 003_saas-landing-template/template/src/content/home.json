@@ -1,0 +1,172 @@
+{
+  "hero": {
+    "headline": {
+      "en": "[Your Main Value Proposition - Keep it Clear and Compelling]",
+      "es": "[Tu Propuesta de Valor Principal - Manténla Clara y Convincente]"
+    },
+    "subheadline": {
+      "en": "[Supporting headline that explains the benefit - 1-2 sentences max]",
+      "es": "[Subtítulo que explica el beneficio - máximo 1-2 oraciones]"
+    },
+    "ctaText": {
+      "en": "Get Started Free",
+      "es": "Comenzar Gratis"
+    },
+    "ctaSecondaryText": {
+      "en": "Contact Us",
+      "es": "Contáctanos"
+    }
+  },
+  "features": {
+    "sectionTitle": {
+      "en": "Features",
+      "es": "Características"
+    },
+    "items": [
+      {
+        "icon": "Zap",
+        "title": {
+          "en": "[Feature 1 Title - e.g., Lightning Fast]",
+          "es": "[Título Característica 1 - ej., Súper Rápido]"
+        },
+        "description": {
+          "en": "[Brief description of this feature and its benefit - 1-2 sentences]",
+          "es": "[Breve descripción de esta característica y su beneficio - 1-2 oraciones]"
+        }
+      },
+      {
+        "icon": "Shield",
+        "title": {
+          "en": "[Feature 2 Title - e.g., Secure & Private]",
+          "es": "[Título Característica 2 - ej., Seguro y Privado]"
+        },
+        "description": {
+          "en": "[Brief description of this feature and its benefit - 1-2 sentences]",
+          "es": "[Breve descripción de esta característica y su beneficio - 1-2 oraciones]"
+        }
+      },
+      {
+        "icon": "Clock",
+        "title": {
+          "en": "[Feature 3 Title - e.g., Save Time]",
+          "es": "[Título Característica 3 - ej., Ahorra Tiempo]"
+        },
+        "description": {
+          "en": "[Brief description of this feature and its benefit - 1-2 sentences]",
+          "es": "[Breve descripción de esta característica y su beneficio - 1-2 oraciones]"
+        }
+      },
+      {
+        "icon": "Users",
+        "title": {
+          "en": "[Feature 4 Title - e.g., Team Collaboration]",
+          "es": "[Título Característica 4 - ej., Colaboración en Equipo]"
+        },
+        "description": {
+          "en": "[Brief description of this feature and its benefit - 1-2 sentences]",
+          "es": "[Breve descripción de esta característica y su beneficio - 1-2 oraciones]"
+        }
+      },
+      {
+        "icon": "BarChart",
+        "title": {
+          "en": "[Feature 5 Title - e.g., Analytics Dashboard]",
+          "es": "[Título Característica 5 - ej., Panel de Análisis]"
+        },
+        "description": {
+          "en": "[Brief description of this feature and its benefit - 1-2 sentences]",
+          "es": "[Breve descripción de esta característica y su beneficio - 1-2 oraciones]"
+        }
+      },
+      {
+        "icon": "Globe",
+        "title": {
+          "en": "[Feature 6 Title - e.g., Global Access]",
+          "es": "[Título Característica 6 - ej., Acceso Global]"
+        },
+        "description": {
+          "en": "[Brief description of this feature and its benefit - 1-2 sentences]",
+          "es": "[Breve descripción de esta característica y su beneficio - 1-2 oraciones]"
+        }
+      }
+    ]
+  },
+  "howItWorks": {
+    "sectionTitle": {
+      "en": "How It Works",
+      "es": "Cómo Funciona"
+    },
+    "steps": [
+      {
+        "stepNumber": 1,
+        "title": {
+          "en": "[Step 1 Title - e.g., Sign Up]",
+          "es": "[Título Paso 1 - ej., Regístrate]"
+        },
+        "description": {
+          "en": "[Describe what happens in this step - keep it simple and clear]",
+          "es": "[Describe qué sucede en este paso - manténlo simple y claro]"
+        }
+      },
+      {
+        "stepNumber": 2,
+        "title": {
+          "en": "[Step 2 Title - e.g., Configure]",
+          "es": "[Título Paso 2 - ej., Configura]"
+        },
+        "description": {
+          "en": "[Describe what happens in this step - keep it simple and clear]",
+          "es": "[Describe qué sucede en este paso - manténlo simple y claro]"
+        }
+      },
+      {
+        "stepNumber": 3,
+        "title": {
+          "en": "[Step 3 Title - e.g., Launch]",
+          "es": "[Título Paso 3 - ej., Lanza]"
+        },
+        "description": {
+          "en": "[Describe what happens in this step - keep it simple and clear]",
+          "es": "[Describe qué sucede en este paso - manténlo simple y claro]"
+        }
+      },
+      {
+        "stepNumber": 4,
+        "title": {
+          "en": "[Step 4 Title - e.g., Grow]",
+          "es": "[Título Paso 4 - ej., Crece]"
+        },
+        "description": {
+          "en": "[Describe what happens in this step - keep it simple and clear]",
+          "es": "[Describe qué sucede en este paso - manténlo simple y claro]"
+        }
+      }
+    ]
+  },
+  "waitlistCta": {
+    "title": {
+      "en": "[Call-to-Action Title - e.g., Ready to Get Started?]",
+      "es": "[Título de Llamado a la Acción - ej., ¿Listo para Comenzar?]"
+    },
+    "description": {
+      "en": "[Compelling reason to join now - create urgency or highlight benefit]",
+      "es": "[Razón convincente para unirse ahora - crea urgencia o destaca beneficio]"
+    },
+    "buttonText": {
+      "en": "Join Waitlist",
+      "es": "Unirse a Lista de Espera"
+    },
+    "placeholder": {
+      "en": "Enter your email",
+      "es": "Ingresa tu email"
+    },
+    "successMessage": {
+      "en": "Thank you for joining! We'll be in touch soon.",
+      "es": "Gracias por unirte! Estaremos en contacto pronto."
+    },
+    "errorMessage": {
+      "en": "Something went wrong. Please try again.",
+      "es": "Algo salió mal. Por favor intenta de nuevo."
+    }
+  }
+}

@@ -1,19 +1,29 @@
-import { Hero } from "@/components/sections/Hero";
-import { Features } from "@/components/sections/Features";
-import { HowItWorks } from "@/components/sections/HowItWorks";
-import { PricingPreview } from "@/components/sections/PricingPreview";
-import { FAQ } from "@/components/sections/FAQ";
-import { WaitlistCTA } from "@/components/sections/WaitlistCTA";
+"use client";
 
-export default function HomePage() {
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
+import Hero from "@/components/sections/Hero";
+import Features from "@/components/sections/Features";
+import HowItWorks from "@/components/sections/HowItWorks";
+import Pricing from "@/components/sections/Pricing";
+import FAQ from "@/components/sections/FAQ";
+import About from "@/components/sections/About";
+import Contact from "@/components/sections/Contact";
+import Waitlist from "@/components/sections/Waitlist";
+
+export default function Home() {
   return (
-    <main>
+    <main className="min-h-screen">
+      <Navbar />
       <Hero />
       <Features />
       <HowItWorks />
-      <PricingPreview />
+      <Pricing />
+      <Waitlist />
       <FAQ />
-      <WaitlistCTA />
+      <About />
+      <Contact />
+      <Footer />
     </main>
   );
 }

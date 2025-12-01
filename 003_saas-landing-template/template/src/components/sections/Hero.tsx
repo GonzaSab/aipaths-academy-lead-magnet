@@ -1,93 +1,144 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import { motion, type Variants } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { useLanguage } from "@/contexts/LanguageContext";
-import homeContent from "@/../content/home.json";
+import { useTranslation } from "@/hooks/useTranslation";
+import content from "@/content/home.json";
 
-export const Hero = () => {
-  const { t } = useLanguage();
-  const { hero } = homeContent;
-  const [imageError, setImageError] = useState(false);
+const Hero = () => {
+  const { t } = useTranslation();
 
-  const showImage = hero.image?.src && !imageError;
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1] as const,
+      },
+    },
+  };
+
+  const handleScrollToWaitlist = () => {
+    const waitlistSection = document.querySelector("#waitlist");
+    if (waitlistSection) {
+      waitlistSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const handleScrollToContact = () => {
+    const contactSection = document.querySelector("#contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   return (
-    <section className="relative w-full py-20 md:py-32 overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[rgb(var(--accent))]/5 via-transparent to-[rgb(var(--accent))]/10 pointer-events-none" />
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b from-background via-background to-muted/20 px-4 py-20">
+      {/* Decorative gradient blobs */}
+      <motion.div
+        initial={{ y: 0 }}
+        animate={{
+          y: [-10, 10, -10],
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute left-1/4 top-1/4 size-96 rounded-full bg-gradient-to-br from-gradient-from/30 to-gradient-to/30 blur-3xl"
+        aria-hidden="true"
+      />
+      <motion.div
+        initial={{ y: 0 }}
+        animate={{
+          y: [-10, 10, -10],
+        }}
+        transition={{
+          duration: 7,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1,
+        }}
+        className="absolute bottom-1/4 right-1/4 size-80 rounded-full bg-gradient-to-br from-gradient-to/20 to-gradient-from/20 blur-3xl"
+        aria-hidden="true"
+      />
+      <motion.div
+        initial={{ y: 0 }}
+        animate={{
+          y: [-10, 10, -10],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 2,
+        }}
+        className="absolute right-1/3 top-1/3 size-64 rounded-full bg-gradient-to-br from-gradient-from/20 to-gradient-to/20 blur-3xl"
+        aria-hidden="true"
+      />
 
-      {/* Decorative blobs */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-[rgb(var(--accent))]/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-[rgb(var(--accent))]/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Content */}
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="relative z-10 mx-auto max-w-5xl text-center"
+      >
+        {/* Headline */}
+        <motion.h1
+          variants={itemVariants}
+          className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
+        >
+          <span className="bg-gradient-to-r from-foreground via-foreground to-foreground/80 bg-clip-text text-transparent">
+            {t(content.hero.headline)}
+          </span>
+        </motion.h1>
 
-      <div className="container relative mx-auto px-4 max-w-6xl">
-        <div className="flex flex-col items-center text-center space-y-8">
-          {/* Badge */}
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-[rgb(var(--accent))]/10 text-[rgb(var(--accent))] text-sm font-medium">
-            <span className="relative flex h-2 w-2 mr-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[rgb(var(--accent))] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[rgb(var(--accent))]"></span>
-            </span>
-            {t({ en: "Now in early access", es: "Ahora en acceso anticipado" })}
-          </div>
+        {/* Subheadline */}
+        <motion.p
+          variants={itemVariants}
+          className="mx-auto mb-10 max-w-2xl text-lg text-muted-foreground sm:text-xl md:text-2xl"
+        >
+          {t(content.hero.subheadline)}
+        </motion.p>
 
-          {/* Headline */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[rgb(var(--text))] max-w-4xl leading-tight">
-            {t(hero.headline)}
-          </h1>
-
-          {/* Subheadline */}
-          <p className="text-lg md:text-xl text-[rgb(var(--text))]/70 max-w-2xl leading-relaxed">
-            {t(hero.subheadline)}
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <Link href={hero.primaryCTA.href}>
-              <Button variant="default" size="lg" className="text-base px-8 py-6 shadow-lg shadow-[rgb(var(--accent))]/25 hover:shadow-xl hover:shadow-[rgb(var(--accent))]/30 transition-all">
-                {t(hero.primaryCTA.text)}
-              </Button>
-            </Link>
-            <Link href={hero.secondaryCTA.href}>
-              <Button variant="outline" size="lg" className="text-base px-8 py-6">
-                {t(hero.secondaryCTA.text)}
-              </Button>
-            </Link>
-          </div>
-
-          {/* Social proof */}
-          <div className="flex items-center gap-2 pt-4 text-sm text-[rgb(var(--text))]/60">
-            <div className="flex -space-x-2">
-              {[1, 2, 3, 4].map((i) => (
-                <div
-                  key={i}
-                  className="w-8 h-8 rounded-full bg-gradient-to-br from-[rgb(var(--accent))]/30 to-[rgb(var(--accent))]/60 border-2 border-white"
-                />
-              ))}
-            </div>
-            <span>{t({ en: "Join 500+ on the waitlist", es: "Únete a 500+ en la lista de espera" })}</span>
-          </div>
-
-          {/* Hero Image - only show if valid */}
-          {showImage && (
-            <div className="mt-12 w-full max-w-4xl">
-              <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-[rgb(var(--muted))] border border-[rgb(var(--border))] shadow-2xl">
-                <Image
-                  src={hero.image.src}
-                  alt={t(hero.image.alt)}
-                  fill
-                  className="object-cover"
-                  priority
-                  onError={() => setImageError(true)}
-                />
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
+        {/* CTA Buttons */}
+        <motion.div
+          variants={itemVariants}
+          className="flex flex-col items-center justify-center gap-4 sm:flex-row"
+        >
+          <Button
+            size="lg"
+            onClick={handleScrollToWaitlist}
+            className="w-full text-base sm:w-auto sm:px-8 sm:py-6 sm:text-lg"
+          >
+            {t(content.hero.ctaText)}
+          </Button>
+          <Button
+            size="lg"
+            variant="outline"
+            onClick={handleScrollToContact}
+            className="w-full text-base sm:w-auto sm:px-8 sm:py-6 sm:text-lg"
+          >
+            {t(content.hero.ctaSecondaryText)}
+          </Button>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
+
+export default Hero;

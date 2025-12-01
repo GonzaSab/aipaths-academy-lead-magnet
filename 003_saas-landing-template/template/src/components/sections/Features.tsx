@@ -1,75 +1,105 @@
-"use client";
+'use client';
 
-import * as Icons from "lucide-react";
-import { LucideIcon } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
-import homeContent from "@/../content/home.json";
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import * as LucideIcons from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { useTranslation } from '@/hooks/useTranslation';
+import homeContent from '@/content/home.json';
 
-type IconName = keyof typeof Icons;
+export default function Features() {
+  const { t } = useTranslation();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
 
-interface FeatureCardProps {
-  icon: string;
-  title: { en: string; es: string };
-  description: { en: string; es: string };
-}
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
 
-const FeatureCard = ({ icon, title, description }: FeatureCardProps) => {
-  const { t } = useLanguage();
-  // Convert kebab-case to PascalCase for Lucide icon names
-  const iconName = icon
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join("") as IconName;
-
-  const IconComponent = (Icons[iconName] as LucideIcon) || Icons.Circle;
-
-  return (
-    <div className="group relative p-6 rounded-xl border border-[rgb(var(--border))] bg-[rgb(var(--background))] transition-all hover:border-[rgb(var(--accent))]/50 hover:shadow-xl hover:shadow-[rgb(var(--accent))]/10 hover:-translate-y-1">
-      <div className="flex flex-col items-start space-y-4">
-        {/* Icon */}
-        <div className="p-3 rounded-xl bg-[rgb(var(--accent))]/10 text-[rgb(var(--accent))] transition-transform group-hover:scale-110">
-          <IconComponent className="h-6 w-6" />
-        </div>
-
-        {/* Title */}
-        <h3 className="text-xl font-semibold text-[rgb(var(--text))]">{t(title)}</h3>
-
-        {/* Description */}
-        <p className="text-[rgb(var(--text))]/70 leading-relaxed">{t(description)}</p>
-      </div>
-    </div>
-  );
-};
-
-export const Features = () => {
-  const { t } = useLanguage();
-  const { features } = homeContent;
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut" as const,
+      },
+    },
+  };
 
   return (
-    <section id={features.id} className="w-full py-20 bg-[rgb(var(--muted))]/50">
-      <div className="container mx-auto px-4 max-w-6xl">
-        {/* Section Header */}
-        <div className="text-center space-y-4 mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-[rgb(var(--text))]">
-            {t(features.title)}
-          </h2>
-          <p className="text-lg text-[rgb(var(--text))]/70 max-w-2xl mx-auto">
-            {t(features.subtitle)}
-          </p>
-        </div>
+    <section
+      id="features"
+      ref={ref}
+      className="py-24 px-4 sm:px-6 lg:px-8 bg-background"
+    >
+      <div className="max-w-7xl mx-auto">
+        {/* Section Title */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5 }}
+          className="text-3xl sm:text-4xl font-bold text-center mb-16"
+        >
+          {t(homeContent.features.sectionTitle)}
+        </motion.h2>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.items.map((feature, index) => (
-            <FeatureCard
-              key={index}
-              icon={feature.icon}
-              title={feature.title}
-              description={feature.description}
-            />
-          ))}
-        </div>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {homeContent.features.items.map((feature, index) => {
+            const IconComponent =
+              LucideIcons[
+                feature.icon as keyof typeof LucideIcons
+              ] as LucideIcons.LucideIcon;
+
+            return (
+              <motion.div key={index} variants={itemVariants}>
+                <motion.div
+                  whileHover={{
+                    y: -4,
+                    scale: 1.02,
+                    transition: { duration: 0.2 },
+                  }}
+                  className="h-full"
+                >
+                  <Card className="h-full hover:shadow-lg transition-shadow duration-200">
+                    <CardContent className="flex flex-col items-start gap-4 pt-6">
+                      {/* Icon */}
+                      <div className="rounded-lg bg-primary/10 p-3">
+                        {IconComponent && (
+                          <IconComponent className="h-6 w-6 text-primary" />
+                        )}
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-xl font-bold">
+                        {t(feature.title)}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {t(feature.description)}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );
-};
+}
