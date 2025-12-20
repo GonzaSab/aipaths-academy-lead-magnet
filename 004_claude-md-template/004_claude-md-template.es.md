@@ -34,9 +34,11 @@ prerequisites:
 
 # Files included
 files:
-  - path: CLAUDE.md
+  - path: template/
+    description: Carpeta con los archivos de configuracion
+  - path: template/CLAUDE.md
     description: Archivo de configuracion listo para usar
-  - path: README.md
+  - path: template/README.md
     description: Instrucciones de instalacion rapida
 ---
 
