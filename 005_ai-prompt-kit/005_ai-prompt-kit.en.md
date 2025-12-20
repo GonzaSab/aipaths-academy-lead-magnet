@@ -39,7 +39,7 @@ files:
     description: 14 organized prompt files across 6 categories
   - path: prompts/prompt-builder.md
     description: Interactive wizard to create custom prompts
-  - path: README.md
+  - path: prompts/README.md
     description: Quick start guide and prompt index
 ---
 

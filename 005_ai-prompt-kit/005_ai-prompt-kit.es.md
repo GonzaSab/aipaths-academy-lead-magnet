@@ -39,7 +39,7 @@ files:
     description: 14 archivos de prompts organizados en 6 categorias
   - path: prompts/prompt-builder.md
     description: Asistente interactivo para crear prompts personalizados
-  - path: README.md
+  - path: prompts/README.md
     description: Guia de inicio rapido e indice de prompts
 ---
 
