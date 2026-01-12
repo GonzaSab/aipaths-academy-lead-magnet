@@ -11,18 +11,29 @@ description: "Workflows de n8n listos para importar con los 4 métodos RAG para 
 
 # Category and taxonomy
 category: "automation"
-tags: [n8n, rag, ai-agents, automation, workflows]
-difficulty: beginner
-version: 1.0.0
+tags:
+  - n8n
+  - rag
+  - ai-agents
+  - automation
+  - workflows
+
+# Metadata
+difficulty: "beginner"
+version: "1.0.0"
 published: true
 order: 6
-lastUpdated: '2026-01-12'
-author: AIPaths Academy
-downloadSize: '45 KB'
-estimatedSetupTime: '5 minutos'
+lastUpdated: "2026-01-12"
+author: "AIPaths Academy"
+downloadSize: "45 KB"
+estimatedSetupTime: "5 minutos"
+
+# Prerequisites
 prerequisites:
   - n8n instalado (cloud o self-hosted)
   - API key de OpenAI
+
+# Files included
 files:
   - path: workflows/
     description: Archivos JSON de workflows para n8n
@@ -30,9 +41,16 @@ files:
     description: Datos de ventas de ejemplo para probar
 ---
 
+# Workflows RAG para n8n
+
+Workflow de n8n listo para importar que demuestra los 4 métodos RAG para conectar agentes IA a tus datos.
+
 ## Qué Incluye
 
-Este pack contiene el workflow de n8n que demuestra los 4 métodos RAG para conectar agentes IA a tus datos:
+- **RAG_N8N.json** - Workflow completo de n8n con los 4 métodos
+- **sales_january_2026.csv** - Datos de ejemplo para probar
+
+## Los 4 Métodos RAG
 
 1. **Filtros** - Búsquedas exactas simples
 2. **Consultas SQL** - Cálculos y agregaciones
@@ -41,21 +59,12 @@ Este pack contiene el workflow de n8n que demuestra los 4 métodos RAG para cone
 
 ## Instalación Rápida
 
-1. **Descarga y extrae** el archivo ZIP
-
-2. **Importa en n8n**
-   - Abre tu instancia de n8n
-   - Ve a Workflows > Import from File
-   - Selecciona `RAG_N8N.json`
-
-3. **Configura credenciales**
-   - Agrega tu API key de OpenAI
-   - Conecta tu fuente de datos (o usa el CSV incluido)
-
-4. **Pruébalo**
-   - Abre el workflow
-   - Click en "Test workflow"
-   - Haz preguntas sobre tus datos
+1. Descarga y extrae el archivo ZIP
+2. Abre tu instancia de n8n
+3. Ve a Workflows > Import from File
+4. Selecciona `RAG_N8N.json`
+5. Agrega tu API key de OpenAI
+6. Prueba con los datos CSV incluidos
 
 ## Preguntas de Ejemplo
 
@@ -77,10 +86,5 @@ Prueba estas con los datos de ventas incluidos:
 
 ## Recursos Relacionados
 
-- [Guía Completa de RAG](https://www.aipaths.academy/docs/rag-methods-guide) - Explicación detallada de cada método
-- [Tutorial en YouTube](https://www.youtube.com/@aipaths) - Video paso a paso
-
-## ¿Necesitas Ayuda?
-
-- **Discord**: discord.gg/9pB5pPbf2m
-- **Email**: support@aipaths.academy
+- [Guía Completa de RAG](https://www.aipaths.academy/docs/rag-methods-guide)
+- [Tutorial en YouTube](https://www.youtube.com/@aipaths)
