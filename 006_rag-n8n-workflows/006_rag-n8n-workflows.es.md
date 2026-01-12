@@ -1,12 +1,20 @@
 ---
-title: Workflows RAG para n8n
-description: Workflows de n8n listos para importar con los 4 métodos RAG para conectar agentes IA a tus datos.
-category: automation
+# Unique identifier linking EN/ES versions
+content_id: "lead-magnets-rag-n8n-workflows"
+
+# Locale (must match filename)
+locale: "es"
+
+# SEO & Display
+title: "Workflows RAG para n8n"
+description: "Workflows de n8n listos para importar con los 4 métodos RAG para conectar agentes IA a tus datos."
+
+# Category and taxonomy
+category: "automation"
 tags: [n8n, rag, ai-agents, automation, workflows]
 difficulty: beginner
 version: 1.0.0
 published: true
-locale: es
 order: 6
 lastUpdated: '2026-01-12'
 author: AIPaths Academy

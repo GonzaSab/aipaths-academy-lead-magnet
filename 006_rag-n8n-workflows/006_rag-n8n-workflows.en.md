@@ -1,12 +1,20 @@
 ---
-title: RAG Methods n8n Workflows
-description: Ready-to-import n8n workflows showing the 4 RAG methods to connect AI agents with your data.
-category: automation
+# Unique identifier linking EN/ES versions
+content_id: "lead-magnets-rag-n8n-workflows"
+
+# Locale (must match filename)
+locale: "en"
+
+# SEO & Display
+title: "RAG Methods n8n Workflows"
+description: "Ready-to-import n8n workflows showing the 4 RAG methods to connect AI agents with your data."
+
+# Category and taxonomy
+category: "automation"
 tags: [n8n, rag, ai-agents, automation, workflows]
 difficulty: beginner
 version: 1.0.0
 published: true
-locale: en
 order: 6
 lastUpdated: '2026-01-12'
 author: AIPaths Academy
