@@ -1,0 +1,970 @@
+{
+    "nodes": [
+        {
+            "parameters": {
+                "content": "  ## Qué es esto\n  - Le dices al agente qué datos necesitas y él elige la herramienta correcta\n  - Filtra por nombre de producto, ID o fecha específica\n  - Calcula totales, promedios e ingresos automáticamente\n\n  ## Cuándo usarlo\n  - Tus datos están estructurados en filas y columnas\n  - Quieres respuestas rápidas sin escribir consultas SQL\n  - Necesitas análisis de ventas por producto o fecha\n\n  ## Ejemplos de preguntas\n  - \"¿Cuántas Laptop Pro vendí este mes?\"\n  - \"Muéstrame las ventas del 15 de enero\"\n  - \"¿Cuál es el ingreso total de Wireless Mouse?\"\n  - \"Filtra por producto P004\"\n  - \"¿Cuántas unidades de Office Chair se vendieron?\"\n\n  ## Por qué funciona bien\n  - **Rápido** — Usa filtros en lugar de cargar toda la tabla\n  - **Preciso** — Calculadora integrada para operaciones matemáticas\n  - **Simple** — Pregunta en lenguaje natural, obtén datos reales\n\n  ## Regla de oro\n  Si un humano usaría filtros en una hoja de cálculo, este agente hace lo mismo—pero con lenguaje natural.",
+                "height": 684,
+                "width": 596
+            },
+            "type": "n8n-nodes-base.stickyNote",
+            "typeVersion": 1,
+            "position": [
+                -2672,
+                -128
+            ],
+            "id": "note-1",
+            "name": "Pattern 1"
+        },
+        {
+            "parameters": {
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+            "typeVersion": 1.1,
+            "position": [
+                -2704,
+                -720
+            ],
+            "id": "trigger-1",
+            "name": "Chat Trigger 1",
+            "webhookId": "pattern1-chat"
+        },
+        {
+            "parameters": {
+                "options": {
+                    "systemMessage": "Eres un asistente de datos de ventas que consulta la tabla **sales_january_2026**.\n\n  **Responde siempre en español. Usa únicamente datos obtenidos de la tabla—nunca inventes información.**\n\n  ## Tus Herramientas\n\n  | Herramienta | Cuándo Usarla |\n  |-------------|---------------|\n  | `filter_by_name` | Usuario menciona un nombre de producto |\n  | `filter_by_product_id` | Usuario menciona un ID de producto (P001-P010) |\n  | `filter_by_date` | Usuario pregunta por una fecha específica |\n  | `get_all_sales` | SOLO cuando necesitas datos de TODOS los productos |\n  | `calculator` | Realizar operaciones matemáticas (sumas, promedios, porcentajes, etc.) |\n\n  ## Esquema de Base de Datos\n\n  | Columna | Tipo | Ejemplo |\n  |---------|------|---------|\n  | id | entero | 1 |\n  | product_id | texto | P001 |\n  | name | texto | Laptop Pro |\n  | date | fecha | Mon Jan 05 2026 05:00:00 GMT+0000 (Greenwich Mean Time) |\n  | quantity | entero | 3 |\n  | price | decimal | 1200 |\n\nSi la fecha no la encontras, proba nuevamente con otro formato, el formato correcto es DateTime\n\n  ## Referencia de Productos\n\n  | ID | Nombre |\n  |----|--------|\n  | P001 | Laptop Pro |\n  | P002 | Wireless Mouse |\n  | P003 | Office Chair |\n  | P004 | Monitor 27 inch |\n  | P005 | Keyboard |\n  | P006 | Webcam HD |\n  | P007 | Standing Desk |\n  | P008 | Desk Lamp |\n  | P009 | USB Hub |\n  | P010 | Headphones |\n\n  ## Instrucciones\n\n  1. **Responde siempre en español**\n  2. **Usa solo datos de la tabla**—no inventes ni asumas información\n  3. **Prioriza siempre los filtros** sobre `get_all_sales`—son más eficientes\n  4. **Coincide nombres exactamente** como están listados arriba\n  5. **Usa la calculadora** para todas las operaciones matemáticas\n  6. **Presenta resultados claramente** en tabla o resumen\n  7. Si el producto no existe en la lista, informa al usuario que no está disponible\n\n  ## Ejemplos\n\n  - \"¿Cuántos laptops vendí?\" → `filter_by_name(\"Laptop Pro\")` + `calculator`\n  - \"¿Ventas del 5 de enero?\" → `filter_by_date(\"2026-01-05\")`\n  - \"Muéstrame ventas de P003\" → `filter_by_product_id(\"P003\")`\n  - \"¿Cuántos parlantes bluetooth vendí?\" → Informar que no existe ese producto\n  - \"¿Ingresos totales de TODO?\" → `get_all_sales()` + `calculator` (único caso válido)"
+                }
+            },
+            "type": "@n8n/n8n-nodes-langchain.agent",
+            "typeVersion": 1.7,
+            "position": [
+                -2512,
+                -720
+            ],
+            "id": "agent-1",
+            "name": "Sales Data Agent"
+        },
+        {
+            "parameters": {
+                "descriptionType": "manual",
+                "toolDescription": "filter_by_date",
+                "operation": "get",
+                "dataTableId": {
+                    "__rl": true,
+                    "value": "YAC1ZcBNslnlabob",
+                    "mode": "list",
+                    "cachedResultName": "sales_january_2026",
+                    "cachedResultUrl": "/projects/DZCbMzLKFk8epWgo/datatables/YAC1ZcBNslnlabob"
+                },
+                "matchType": "=anyCondition",
+                "filters": {
+                    "conditions": [
+                        {
+                            "keyName": "date",
+                            "keyValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('conditions0_Value', ``, 'string') }}"
+                        }
+                    ]
+                },
+                "limit": 15
+            },
+            "type": "n8n-nodes-base.dataTableTool",
+            "typeVersion": 1.1,
+            "position": [
+                -2576,
+                -352
+            ],
+            "id": "7ed820bd-4038-498d-ac3b-aff20013d2ce",
+            "name": "Date Filter"
+        },
+        {
+            "parameters": {},
+            "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+            "typeVersion": 1,
+            "position": [
+                -2080,
+                -352
+            ],
+            "id": "6a53b1e7-f143-4686-bb97-9c9d1bfd7bb3",
+            "name": "Calculator2"
+        },
+        {
+            "parameters": {
+                "descriptionType": "manual",
+                "toolDescription": "filter_by_name",
+                "operation": "get",
+                "dataTableId": {
+                    "__rl": true,
+                    "value": "YAC1ZcBNslnlabob",
+                    "mode": "list",
+                    "cachedResultName": "sales_january_2026",
+                    "cachedResultUrl": "/projects/DZCbMzLKFk8epWgo/datatables/YAC1ZcBNslnlabob"
+                },
+                "matchType": "=anyCondition",
+                "filters": {
+                    "conditions": [
+                        {
+                            "keyName": "name",
+                            "keyValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('conditions0_Value', ``, 'string') }}"
+                        }
+                    ]
+                }
+            },
+            "type": "n8n-nodes-base.dataTableTool",
+            "typeVersion": 1.1,
+            "position": [
+                -2480,
+                -352
+            ],
+            "id": "50b6e2bf-dd83-43d2-ab87-701558c04800",
+            "name": "Name Filter"
+        },
+        {
+            "parameters": {
+                "model": {
+                    "__rl": true,
+                    "value": "gpt-4o",
+                    "mode": "list",
+                    "cachedResultName": "gpt-4o"
+                },
+                "builtInTools": {},
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+            "typeVersion": 1.3,
+            "position": [
+                -2800,
+                -528
+            ],
+            "id": "3d53f140-b62d-4aab-b7f6-58869da9757e",
+            "name": "OpenAI Chat Model",
+            "credentials": {
+                "openAiApi": {
+                    "id": "AeB5PvI8z2KniNeY",
+                    "name": "OpenAi account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "descriptionType": "manual",
+                "toolDescription": "filter_by_product_id",
+                "operation": "get",
+                "dataTableId": {
+                    "__rl": true,
+                    "value": "YAC1ZcBNslnlabob",
+                    "mode": "list",
+                    "cachedResultName": "sales_january_2026",
+                    "cachedResultUrl": "/projects/DZCbMzLKFk8epWgo/datatables/YAC1ZcBNslnlabob"
+                },
+                "matchType": "=anyCondition",
+                "filters": {
+                    "conditions": [
+                        {
+                            "keyName": "product_id",
+                            "keyValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('conditions0_Value', ``, 'string') }}"
+                        }
+                    ]
+                },
+                "limit": 15
+            },
+            "type": "n8n-nodes-base.dataTableTool",
+            "typeVersion": 1.1,
+            "position": [
+                -2352,
+                -352
+            ],
+            "id": "370d8e4f-88da-4965-aa48-f0bdc3753363",
+            "name": "Filter by Product ID"
+        },
+        {
+            "parameters": {
+                "descriptionType": "manual",
+                "toolDescription": "get_all_sales",
+                "operation": "get",
+                "dataTableId": {
+                    "__rl": true,
+                    "value": "YAC1ZcBNslnlabob",
+                    "mode": "list",
+                    "cachedResultName": "sales_january_2026",
+                    "cachedResultUrl": "/projects/DZCbMzLKFk8epWgo/datatables/YAC1ZcBNslnlabob"
+                },
+                "matchType": "=anyCondition",
+                "limit": 15
+            },
+            "type": "n8n-nodes-base.dataTableTool",
+            "typeVersion": 1.1,
+            "position": [
+                -2224,
+                -352
+            ],
+            "id": "6f29f395-3897-4862-b325-0d51f0d6c24a",
+            "name": "Get All Sales"
+        },
+        {
+            "parameters": {},
+            "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+            "typeVersion": 1.3,
+            "position": [
+                -2704,
+                -352
+            ],
+            "id": "92877772-98ca-4104-b129-15735e5c568d",
+            "name": "Simple Memory"
+        },
+        {
+            "parameters": {
+                "content": " # 1. Agente con Filtros",
+                "height": 656,
+                "width": 1008
+            },
+            "type": "n8n-nodes-base.stickyNote",
+            "typeVersion": 1,
+            "position": [
+                -2912,
+                -848
+            ],
+            "id": "6391ec3c-88b1-46ae-9438-653249ee53d0",
+            "name": "Sticky Note"
+        },
+        {
+            "parameters": {
+                "content": "# 3. Contexto Completo\n\n\n",
+                "height": 656,
+                "width": 864,
+                "color": 5
+            },
+            "type": "n8n-nodes-base.stickyNote",
+            "typeVersion": 1,
+            "position": [
+                -544,
+                -848
+            ],
+            "id": "19d844b3-9fd9-4fe0-a83b-672b5996202a",
+            "name": "Sticky Note1"
+        },
+        {
+            "parameters": {
+                "options": {
+                    "systemMessage": "=Eres un Agente de IA diseñado para proporcionar insights claros, útiles y accionables usando dos herramientas de referencia:\n\n  1. **Encontrando Tu Nicho Rentable** – documentación sobre nichos de mercado, estrategias de negocio, monetización, posicionamiento y oportunidades.\n  2. **Guía Completa de RAG** – documentación técnica sobre Retrieval-Augmented Generation, implementación, arquitectura y casos de uso técnicos.\n\n  ### Regla de Selección de Documento (IMPORTANTE)\n  ANTES de buscar información, determina cuál documento usar según el tema:\n\n  - **Preguntas sobre negocio, nichos, clientes, monetización, ventas, oportunidades** → USA SOLO \"Encontrando Tu Nicho Rentable\"\n  - **Preguntas sobre RAG, embeddings, vectores, chunks, LLMs, implementación técnica** → USA SOLO \"Guía Completa de RAG\"\n\n  NUNCA busques en ambos documentos. Elige UNO solo basándote en el tema principal de la pregunta.\n\n  ### Tu Objetivo\n  Una vez seleccionado el documento correcto:\n  - Resuma los puntos clave relevantes a la pregunta\n  - Proporcione consejos o insights accionables\n  - Mantén un tono accesible, práctico y motivacional\n\n  ### Formato de Respuesta\n  Responde en párrafo corto o lista. Sin palabras de relleno. Enfócate en claridad y utilidad."
+                }
+            },
+            "type": "@n8n/n8n-nodes-langchain.agent",
+            "typeVersion": 3,
+            "position": [
+                -176,
+                -688
+            ],
+            "id": "a8c26952-3fc4-48a1-a86b-69cee28ceed7",
+            "name": "AI Agent"
+        },
+        {
+            "parameters": {},
+            "type": "n8n-nodes-base.manualTrigger",
+            "typeVersion": 1,
+            "position": [
+                1872,
+                -656
+            ],
+            "id": "52dd5115-c169-4df3-a4f6-bf430d9d2746",
+            "name": "When clicking ‘Execute workflow’"
+        },
+        {
+            "parameters": {
+                "mode": "insert",
+                "tableName": {
+                    "__rl": true,
+                    "value": "documents",
+                    "mode": "list"
+                },
+                "options": {
+                    "queryName": "match_documents"
+                }
+            },
+            "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+            "typeVersion": 1.3,
+            "position": [
+                2496,
+                -656
+            ],
+            "id": "c259df1b-b3c0-40d6-9eab-d6265c96319c",
+            "name": "Supabase Vector Store",
+            "credentials": {
+                "supabaseApi": {
+                    "id": "1AV0r4beLxuW2gPE",
+                    "name": "Supabase account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+            "typeVersion": 1.2,
+            "position": [
+                2416,
+                -464
+            ],
+            "id": "975896fd-d56c-4d54-97b7-6ddd9cacf25d",
+            "name": "Embeddings OpenAI",
+            "credentials": {
+                "openAiApi": {
+                    "id": "AeB5PvI8z2KniNeY",
+                    "name": "OpenAi account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "jsonMode": "expressionData",
+                "jsonData": "={{ $json.content }}\n\n{{ $('RAG Doc').item.json.content }}",
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+            "typeVersion": 1.1,
+            "position": [
+                2640,
+                -464
+            ],
+            "id": "3fbf12d2-efb5-4b59-bf47-b05008811b27",
+            "name": "Default Data Loader"
+        },
+        {
+            "parameters": {
+                "options": {
+                    "systemMessage": "=You are an AI Agent designed to provide clear, helpful, and actionable insights using your Transcript tool (vector store)\n\n### Your Objective\nWhen a user asks a question, use your Transcript tool to get relevant information, then reference the context from that database to give a clear, structured, and concise response that:\n- Summarizes the key points relevant to the question\n- Provides actionable advice or insights\n- Maintains Nate Herk’s tone — approachable, practical, and motivational\n\n### Output Format\nAlways respond in a short paragraph or list format. Avoid filler language. Focus on clarity, usefulness, and accuracy.\n"
+                }
+            },
+            "type": "@n8n/n8n-nodes-langchain.agent",
+            "typeVersion": 3,
+            "position": [
+                848,
+                -672
+            ],
+            "id": "27a3f32a-1b5f-418b-9698-5c4d1607dba1",
+            "name": "AI Agent3"
+        },
+        {
+            "parameters": {
+                "mode": "retrieve-as-tool",
+                "toolDescription": "Usa esta herramienta para ver los documentos cargados y responder la pregunta del usuario",
+                "tableName": {
+                    "__rl": true,
+                    "value": "documents",
+                    "mode": "list",
+                    "cachedResultName": "documents"
+                },
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+            "typeVersion": 1.3,
+            "position": [
+                1248,
+                -640
+            ],
+            "id": "babae76d-61cd-4fb5-a0bb-cc2b12275784",
+            "name": "Supabase Vector Store1",
+            "credentials": {
+                "supabaseApi": {
+                    "id": "1AV0r4beLxuW2gPE",
+                    "name": "Supabase account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+            "typeVersion": 1.2,
+            "position": [
+                1248,
+                -464
+            ],
+            "id": "a4b5f9d3-92ad-4185-9a5a-009fca79be03",
+            "name": "Embeddings OpenAI1",
+            "credentials": {
+                "openAiApi": {
+                    "id": "AeB5PvI8z2KniNeY",
+                    "name": "OpenAi account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "content": "## Vectorize\n\n\n",
+                "height": 448,
+                "width": 1136,
+                "color": 6
+            },
+            "type": "n8n-nodes-base.stickyNote",
+            "typeVersion": 1,
+            "position": [
+                1744,
+                -752
+            ],
+            "id": "ddb34ac1-3764-4675-9b32-d311423b4ffe",
+            "name": "Sticky Note5"
+        },
+        {
+            "parameters": {
+                "content": "# 4. Vectores\n\n\n",
+                "height": 656,
+                "width": 1136,
+                "color": 6
+            },
+            "type": "n8n-nodes-base.stickyNote",
+            "typeVersion": 1,
+            "position": [
+                496,
+                -848
+            ],
+            "id": "0fad856e-b321-4b10-998c-0bfb58e4a207",
+            "name": "Sticky Note6"
+        },
+        {
+            "parameters": {
+                "content": "# 2. Consultas SQL",
+                "height": 656,
+                "width": 1008,
+                "color": 4
+            },
+            "type": "n8n-nodes-base.stickyNote",
+            "typeVersion": 1,
+            "position": [
+                -1728,
+                -848
+            ],
+            "id": "c22b8309-8c56-4592-a683-1d0efeec4254",
+            "name": "Sticky Note8"
+        },
+        {
+            "parameters": {
+                "content": "  ## **Qué es esto**\n  - El agente lee el documento completo o conjunto de documentos.\n  - Nada se divide en chunks.\n  - El orden y la estructura se preservan.\n\n   ## **Cuándo usarlo**\n  - Necesitas resúmenes, líneas de tiempo o explicaciones paso a paso.\n  - El orden de la información importa.\n  - El dataset es lo suficientemente pequeño para caber en la ventana de contexto del modelo.\n\n    ##**Ejemplos comunes**\n  - \"Resume este PDF de principio a fin.\"\n  - \"Explica las ideas clave de este documento de capacitación.\"\n  - \"¿Cuáles son los pasos descritos en esta guía?\"\n\n   ## **Por qué funciona bien**\n  - Mayor precisión para contenido de formato largo.\n  - Sin contexto faltante.\n  - Sin mezclar información de diferentes fuentes.\n\n  ## **Regla de oro**\n  - Si un humano leería el documento completo, usa contexto completo.",
+                "height": 672,
+                "width": 592,
+                "color": 5
+            },
+            "type": "n8n-nodes-base.stickyNote",
+            "typeVersion": 1,
+            "position": [
+                -384,
+                -128
+            ],
+            "id": "b572c8c2-238d-4c1b-83ba-0246a3949e2b",
+            "name": "Sticky Note9"
+        },
+        {
+            "parameters": {
+                "content": "  ## Qué es esto\n  - Los documentos se dividen en fragmentos (chunks).\n  - El agente recupera solo las piezas más relevantes.\n  - Generalmente usa una base de datos vectorial.\n\n   ## Cuándo usarlo\n  - Tienes una base de conocimiento grande.\n  - Los usuarios hacen preguntas abiertas.\n  - No necesitas el orden completo del documento.\n\n  ##  Ejemplos comunes\n  - \"¿Qué dice nuestra política de reembolsos?\"\n  - \"¿Cómo funciona la autenticación?\"\n  - \"¿Qué herramientas se integran con nuestra plataforma?\"\n\n   ## Por qué funciona bien\n  - Escala a grandes conjuntos de datos.\n  - Más rápido y económico que usar el contexto completo.\n  - Excelente para Q&A semántico.\n\n   ## Donde los principiantes se confunden\n  - Resúmenes pobres.\n  - Líneas de tiempo incorrectas.\n  - Respuestas incompletas cuando se necesita el contexto completo.\n\n   ## Regla de oro\n  - Si los usuarios hacen preguntas estilo búsqueda, usa recuperación basada en chunks.",
+                "height": 784,
+                "width": 592,
+                "color": 6
+            },
+            "type": "n8n-nodes-base.stickyNote",
+            "typeVersion": 1,
+            "position": [
+                800,
+                -128
+            ],
+            "id": "a320de49-d1b7-4d3d-93ad-f76eb3f31b12",
+            "name": "Sticky Note10"
+        },
+        {
+            "parameters": {
+                "operation": "executeQuery",
+                "query": "{{ $fromAI('sql_query') }}",
+                "options": {}
+            },
+            "type": "n8n-nodes-base.postgresTool",
+            "typeVersion": 2.6,
+            "position": [
+                -1184,
+                -448
+            ],
+            "id": "e791b652-39f5-41b9-800b-16fee4af8124",
+            "name": "sales_data1",
+            "credentials": {
+                "postgres": {
+                    "id": "dA3sgxJ5hK8lSN3m",
+                    "name": "Postgres account"
+                }
+            }
+        },
+        {
+            "parameters": {},
+            "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+            "typeVersion": 1,
+            "position": [
+                -1040,
+                -448
+            ],
+            "id": "c1f38aad-2ed0-4b81-8bec-81c0f3b5c2fe",
+            "name": "Calculator4"
+        },
+        {
+            "parameters": {
+                "options": {
+                    "systemMessage": "=# Overview\nEres un AI Data Analyst con acceso a una tabla PostgreSQL llamada sales en Railway.\nPuedes ejecutar consultas SQL usando la herramienta sales_data para recuperar y analizar información de ventas.\n\n## Objetivo\nTu trabajo es realizar análisis de datos y generar insights de negocio sobre la tabla sales escribiendo consultas SQL válidas y eficientes, ejecutándolas a través de la herramienta sales_data, y resumiendo los resultados en lenguaje natural claro.\n\nDebes ayudar al usuario a entender el rendimiento de ventas, comportamiento de productos, tendencias y métricas de ingresos. Siempre valida tus suposiciones y explica el razonamiento detrás de cada consulta y los insights obtenidos.\n\n## Detalles de la Tabla\nLa tabla sales contiene las siguientes columnas:\n\n- id (INTEGER): Identificador único del registro de venta (ej: 1, 2, 3)\n- product_id (TEXT): Código identificador del producto (ej: \"P001\", \"P002\")\n- name (TEXT): Nombre del producto (ej: \"Laptop Pro\", \"Wireless Mouse\")\n- date (DATE): Fecha de la venta en formato YYYY-MM-DD\n- quantity (INTEGER): Cantidad de unidades vendidas\n- price (DECIMAL): Precio unitario del producto en USD\n\n## Productos Disponibles\nP001=Laptop Pro ($1200), P002=Wireless Mouse ($25), P003=Office Chair ($350), P004=Monitor 27 inch ($400), P005=Keyboard ($75), P006=Webcam HD ($80), P007=Standing Desk ($550), P008=Desk Lamp ($45), P009=USB Hub ($35), P010=Headphones ($150)\n\n## Cómo Usar las Herramientas\n\nPara obtener datos, construye una consulta SQL válida y ejecútala usando la herramienta sales_data.\n\nEjemplo: SELECT * FROM sales LIMIT 5;\n\nTambién puedes ejecutar consultas de agregación, agrupación, filtrado y análisis basados en fechas.\n\nPuedes usar funciones como SUM(), AVG(), COUNT(), MAX(), MIN(), GROUP BY y ORDER BY.\n\nTambién tienes una herramienta Calculator y una herramienta Think. Úsalas para hacer cálculos matemáticos o para tomar notas que aseguren la correctitud de tus respuestas.\n\n## Reglas de Comportamiento\n\nSé preciso y conciso. Usa consultas SQL precisas y siempre verifica que tu consulta funcionará con sintaxis PostgreSQL.\n\nNunca inventes resultados. Solo resume información devuelta por la herramienta sales_data.\n\nIncluye tanto la consulta como la explicación. Cuando te pidan análisis, muestra el SQL que usaste y luego explica los hallazgos en español claro.\n\nManeja la ambigüedad con gracia. Si la solicitud del usuario es vaga (ej: \"muéstrame tendencias de ventas\"), infiere una consulta razonable como ingresos diarios o mensuales, y describe por qué.\n\nRespeta el esquema. Nunca hagas referencia a columnas que no existen en el esquema de la tabla.\n\nMantén las respuestas legibles. Presenta los hallazgos en viñetas claras, párrafos cortos o un resumen en tabla simple.\n\nResponde siempre en español.\n\n## Ejemplos\n\n### Ejemplo 1 — Productos con Mayor Ingreso\nUsuario: \"¿Qué productos generaron más ingresos totales?\"\n→ Ejecutar:\nSELECT name, SUM(quantity * price) AS total_revenue\nFROM sales\nGROUP BY name\nORDER BY total_revenue DESC;\nLuego resume qué productos tuvieron mejor rendimiento y por qué margen.\n\n### Ejemplo 2 — Valor Promedio de Orden\nUsuario: \"¿Cuál es el valor promedio por venta?\"\n→ Ejecutar:\nSELECT AVG(quantity * price) AS avg_order_value FROM sales;\nExplica qué significa esta métrica y cómo podría guiar la estrategia de precios.\n\n### Ejemplo 3 — Tendencias Mensuales\nUsuario: \"Muéstrame tendencias de ventas por día.\"\n→ Ejecutar:\nSELECT date, SUM(quantity * price) AS daily_sales\nFROM sales\nGROUP BY date\nORDER BY date;\nProporciona una narrativa corta sobre estacionalidad o picos de ventas.\n\n## Nota Final\nTu propósito es convertir consultas de base de datos en análisis de negocio perspicaces — piensa como un consultor de datos. Siempre incluye:\n- La consulta SQL que ejecutaste.\n- Una interpretación clara de los resultados.\n- Cualquier patrón relevante, anomalía u oportunidad."
+                }
+            },
+            "type": "@n8n/n8n-nodes-langchain.agent",
+            "typeVersion": 3,
+            "position": [
+                -1344,
+                -688
+            ],
+            "id": "46e182fc-a26a-4b84-b38d-a382cc9c5ff0",
+            "name": "SQL Agent2"
+        },
+        {
+            "parameters": {
+                "model": {
+                    "__rl": true,
+                    "value": "gpt-3.5-turbo",
+                    "mode": "list",
+                    "cachedResultName": "gpt-3.5-turbo"
+                },
+                "builtInTools": {},
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+            "typeVersion": 1.3,
+            "position": [
+                -1536,
+                -448
+            ],
+            "id": "e1ecbb7a-bec0-47f2-b5ab-4ba5979a23c9",
+            "name": "OpenAI Chat Model3",
+            "credentials": {
+                "openAiApi": {
+                    "id": "AeB5PvI8z2KniNeY",
+                    "name": "OpenAi account"
+                }
+            }
+        },
+        {
+            "parameters": {},
+            "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+            "typeVersion": 1.3,
+            "position": [
+                -1344,
+                -448
+            ],
+            "id": "44ab4f58-ff9c-4a56-90eb-269ace79e59c",
+            "name": "Simple Memory1"
+        },
+        {
+            "parameters": {
+                "content": "\n   ## **Qué es esto**\n  - Estás haciendo preguntas más complejas sobre datos estructurados.\n  - El agente genera una consulta que agrupa, ordena o hace cálculos matemáticos.\n\n  ##  **Cuándo usarlo**\n  - Necesitas totales, promedios, rankings o tendencias.\n  - La pregunta involucra muchas filas a la vez.\n  - Necesitas combinar o comparar datos.\n\n   ## **Ejemplos comunes**\n  - \"Top 5 productos por ingresos.\"\n  - \"Valor promedio de orden por mes.\"\n  - \"¿Qué clientes gastan más a lo largo del tiempo?\"\n\n   ## **Por qué funciona bien**\n  - Las bases de datos están diseñadas para hacer este tipo de trabajo.\n  - Mucho más confiable que hacer que la IA razone sobre filas de datos crudos.\n  - Más barato y preciso que búsqueda vectorial para datos estructurados.\n\n  ##  **Regla de oro**\n  - Si un humano usaría una tabla dinámica o fórmulas, usa SQL.",
+                "height": 656,
+                "width": 656,
+                "color": 4
+            },
+            "type": "n8n-nodes-base.stickyNote",
+            "typeVersion": 1,
+            "position": [
+                -1504,
+                -128
+            ],
+            "id": "7bbf4ce4-eb03-4892-8463-71753d689360",
+            "name": "Sticky Note11"
+        },
+        {
+            "parameters": {
+                "model": {
+                    "__rl": true,
+                    "value": "gpt-3.5-turbo",
+                    "mode": "list",
+                    "cachedResultName": "gpt-3.5-turbo"
+                },
+                "builtInTools": {},
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+            "typeVersion": 1.3,
+            "position": [
+                -352,
+                -432
+            ],
+            "id": "e51f6d9b-5cc1-4b78-8f36-8725b47a7ee2",
+            "name": "OpenAI Chat Model4",
+            "credentials": {
+                "openAiApi": {
+                    "id": "AeB5PvI8z2KniNeY",
+                    "name": "OpenAi account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "authentication": "serviceAccount",
+                "operation": "get",
+                "documentURL": "https://docs.google.com/document/d/1Ngrk_c1_VYI_yxpUuFnpbWT8_xkZaGtc5h5RePaqzQM/edit?tab=t.0"
+            },
+            "type": "n8n-nodes-base.googleDocsTool",
+            "typeVersion": 2,
+            "position": [
+                -112,
+                -448
+            ],
+            "id": "147226db-4398-4d49-8e9c-0dddc0bee792",
+            "name": "RAG - Doc",
+            "credentials": {
+                "googleApi": {
+                    "id": "lRSczP9wgWCtmTTO",
+                    "name": "Google Docs account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "authentication": "serviceAccount",
+                "operation": "get",
+                "documentURL": "https://docs.google.com/document/d/1Ypuh5Vq1OX7livxNZ6KUxr6znlxwhvqdWlXRHUIiGY8/edit?tab=t.0"
+            },
+            "type": "n8n-nodes-base.googleDocsTool",
+            "typeVersion": 2,
+            "position": [
+                32,
+                -448
+            ],
+            "id": "9c5483dc-3377-4421-9c31-be0b1570140d",
+            "name": "Nicho",
+            "credentials": {
+                "googleApi": {
+                    "id": "lRSczP9wgWCtmTTO",
+                    "name": "Google Docs account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "model": {
+                    "__rl": true,
+                    "value": "gpt-3.5-turbo",
+                    "mode": "list",
+                    "cachedResultName": "gpt-3.5-turbo"
+                },
+                "builtInTools": {},
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+            "typeVersion": 1.3,
+            "position": [
+                768,
+                -464
+            ],
+            "id": "08f1cd43-2259-4184-acda-f0318b3cc89c",
+            "name": "OpenAI Chat Model5",
+            "credentials": {
+                "openAiApi": {
+                    "id": "AeB5PvI8z2KniNeY",
+                    "name": "OpenAi account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "authentication": "serviceAccount",
+                "operation": "get",
+                "documentURL": "https://docs.google.com/document/d/1Ngrk_c1_VYI_yxpUuFnpbWT8_xkZaGtc5h5RePaqzQM/edit?tab=t.0"
+            },
+            "type": "n8n-nodes-base.googleDocs",
+            "typeVersion": 2,
+            "position": [
+                2080,
+                -656
+            ],
+            "id": "ff571071-607a-4a3b-b61a-f67247708432",
+            "name": "RAG Doc",
+            "credentials": {
+                "googleApi": {
+                    "id": "lRSczP9wgWCtmTTO",
+                    "name": "Google Docs account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "authentication": "serviceAccount",
+                "operation": "get",
+                "documentURL": "https://docs.google.com/document/d/1Ypuh5Vq1OX7livxNZ6KUxr6znlxwhvqdWlXRHUIiGY8/edit?tab=t.0"
+            },
+            "type": "n8n-nodes-base.googleDocs",
+            "typeVersion": 2,
+            "position": [
+                2288,
+                -656
+            ],
+            "id": "c13c3fcf-6a0d-42ea-8dd7-bd634344f539",
+            "name": "Niche - Doc",
+            "credentials": {
+                "googleApi": {
+                    "id": "lRSczP9wgWCtmTTO",
+                    "name": "Google Docs account"
+                }
+            }
+        }
+    ],
+    "connections": {
+        "Chat Trigger 1": {
+            "main": [
+                [
+                    {
+                        "node": "Sales Data Agent",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Date Filter": {
+            "ai_tool": [
+                [
+                    {
+                        "node": "Sales Data Agent",
+                        "type": "ai_tool",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Calculator2": {
+            "ai_tool": [
+                [
+                    {
+                        "node": "Sales Data Agent",
+                        "type": "ai_tool",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Name Filter": {
+            "ai_tool": [
+                [
+                    {
+                        "node": "Sales Data Agent",
+                        "type": "ai_tool",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "OpenAI Chat Model": {
+            "ai_languageModel": [
+                [
+                    {
+                        "node": "Sales Data Agent",
+                        "type": "ai_languageModel",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Filter by Product ID": {
+            "ai_tool": [
+                [
+                    {
+                        "node": "Sales Data Agent",
+                        "type": "ai_tool",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Get All Sales": {
+            "ai_tool": [
+                [
+                    {
+                        "node": "Sales Data Agent",
+                        "type": "ai_tool",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Simple Memory": {
+            "ai_memory": [
+                [
+                    {
+                        "node": "Sales Data Agent",
+                        "type": "ai_memory",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "When clicking ‘Execute workflow’": {
+            "main": [
+                [
+                    {
+                        "node": "RAG Doc",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Embeddings OpenAI": {
+            "ai_embedding": [
+                [
+                    {
+                        "node": "Supabase Vector Store",
+                        "type": "ai_embedding",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Default Data Loader": {
+            "ai_document": [
+                [
+                    {
+                        "node": "Supabase Vector Store",
+                        "type": "ai_document",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Supabase Vector Store1": {
+            "ai_tool": [
+                [
+                    {
+                        "node": "AI Agent3",
+                        "type": "ai_tool",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Embeddings OpenAI1": {
+            "ai_embedding": [
+                [
+                    {
+                        "node": "Supabase Vector Store1",
+                        "type": "ai_embedding",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "sales_data1": {
+            "ai_tool": [
+                [
+                    {
+                        "node": "SQL Agent2",
+                        "type": "ai_tool",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Calculator4": {
+            "ai_tool": [
+                [
+                    {
+                        "node": "SQL Agent2",
+                        "type": "ai_tool",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "OpenAI Chat Model3": {
+            "ai_languageModel": [
+                [
+                    {
+                        "node": "SQL Agent2",
+                        "type": "ai_languageModel",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Simple Memory1": {
+            "ai_memory": [
+                [
+                    {
+                        "node": "SQL Agent2",
+                        "type": "ai_memory",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "OpenAI Chat Model4": {
+            "ai_languageModel": [
+                [
+                    {
+                        "node": "AI Agent",
+                        "type": "ai_languageModel",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "RAG - Doc": {
+            "ai_tool": [
+                [
+                    {
+                        "node": "AI Agent",
+                        "type": "ai_tool",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Nicho": {
+            "ai_tool": [
+                [
+                    {
+                        "node": "AI Agent",
+                        "type": "ai_tool",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "OpenAI Chat Model5": {
+            "ai_languageModel": [
+                [
+                    {
+                        "node": "AI Agent3",
+                        "type": "ai_languageModel",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "RAG Doc": {
+            "main": [
+                [
+                    {
+                        "node": "Niche - Doc",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Niche - Doc": {
+            "main": [
+                [
+                    {
+                        "node": "Supabase Vector Store",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "pinData": {},
+    "meta": {
+        "templateCredsSetupCompleted": true,
+        "instanceId": "4108c86681186ef39dcbf63602dd23653b7807dd82f7358638cf0ea9387420f1"
+    }
+}
