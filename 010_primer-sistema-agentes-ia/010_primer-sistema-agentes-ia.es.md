@@ -24,7 +24,7 @@ difficulty: "beginner"
 version: "1.0.0"
 published: true
 order: 10
-lastUpdated: "2026-05-16"
+lastUpdated: "2026-06-01"
 author: "AIPaths Academy"
 downloadSize: "2.3 MB"
 estimatedSetupTime: "20 minutos"
