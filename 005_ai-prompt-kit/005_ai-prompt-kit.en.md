@@ -22,7 +22,7 @@ tags:
 # Metadata
 difficulty: "beginner"
 version: "1.0.0"
-published: true
+published: false
 order: 5
 lastUpdated: "2025-12-20"
 author: "AIPaths Academy"

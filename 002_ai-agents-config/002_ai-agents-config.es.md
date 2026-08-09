@@ -5,7 +5,7 @@ category: ai-agents
 tags: [ai-agents, automation, claude-code, productivity, workflow]
 difficulty: beginner
 version: 1.0.0
-published: true
+published: false
 locale: es
 order: 2
 lastUpdated: '2025-11-14'

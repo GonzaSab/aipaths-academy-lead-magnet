@@ -24,7 +24,7 @@ tags:
 # Metadata
 difficulty: "beginner"
 version: "1.0.0"
-published: true
+published: false
 order: 11
 lastUpdated: "2026-06-01"
 author: "AIPaths Academy"

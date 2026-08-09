@@ -5,7 +5,7 @@ category: templates
 tags: [nextjs, saas, landing-page, claude-code, automation, templates]
 difficulty: beginner
 version: 2.0.0
-published: true
+published: false
 locale: es
 order: 3
 lastUpdated: '2025-12-01'
