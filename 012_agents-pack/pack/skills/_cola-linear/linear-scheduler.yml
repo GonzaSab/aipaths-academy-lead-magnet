@@ -1,0 +1,50 @@
+name: linear-taskq-scheduler
+# Mantenimiento de la cola de tareas. Ver SETUP.md
+#
+# RUTAS: este workflow asume que scheduler.mjs y reaper.mjs viven en
+# .github/scripts/. Si los ponés en otro lado, ajustá los `run:` de abajo.
+#
+# Dos pasos, ambos por cron (~cada 10 min) y también a mano:
+#   1. scheduler — activa tareas programadas: "Scheduled" -> "Todo" cuando venció su dueDate.
+#   2. reaper    — libera leases huérfanos: "Claiming" -> "Todo" pasado el umbral.
+#
+# Sin el reaper, una instancia que muere entre el claim y el paso a "In Progress"
+# deja la tarea invisible para todos los runners de forma permanente.
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"   # cada 10 min (GitHub corre los crons en UTC)
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "DRY_RUN (no muta, solo reporta)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  activate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      # sin setup-node: el runner ya trae Node y el scheduler es zero-dep (Node 18+)
+      - name: Activar tareas programadas
+        env:
+          LINEAR_KEY: ${{ secrets.LINEAR_KEY }}
+          LINEAR_TEAM_KEY: "ACME"                       # ← cambiá por tu team key
+          SCHEDULE_TZ: "America/Argentina/Buenos_Aires" # ← tu timezone
+          DRY_RUN: ${{ github.event.inputs.dry_run == 'true' && '1' || '' }}
+        run: node .github/scripts/scheduler.mjs
+
+      # Corre aunque el scheduler falle: son independientes y destrabar la cola
+      # no debería quedar bloqueado por un error al activar tareas programadas.
+      - name: Liberar leases huérfanos
+        if: always()
+        env:
+          LINEAR_KEY: ${{ secrets.LINEAR_KEY }}
+          LINEAR_TEAM_KEY: "ACME"                       # ← cambiá por tu team key
+          STALE_MINUTES: "10"                          # el lease de Claiming dura segundos
+          DRY_RUN: ${{ github.event.inputs.dry_run == 'true' && '1' || '' }}
+        run: node .github/scripts/reaper.mjs
