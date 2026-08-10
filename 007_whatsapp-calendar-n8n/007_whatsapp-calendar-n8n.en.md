@@ -22,6 +22,7 @@ tags:
 difficulty: "intermediate"
 version: "1.0.0"
 published: true
+coverImage: "/images/resources/007_whatsapp-calendar-n8n/thumb.png"
 order: 7
 lastUpdated: "2026-01-23"
 author: "AIPaths Academy"

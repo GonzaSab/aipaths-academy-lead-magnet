@@ -22,6 +22,7 @@ tags:
 difficulty: "beginner"
 version: "1.0.0"
 published: true
+coverImage: "/images/resources/006_rag-n8n-workflows/thumb.png"
 order: 6
 lastUpdated: "2026-01-12"
 author: "AIPaths Academy"

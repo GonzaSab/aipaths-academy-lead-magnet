@@ -22,6 +22,7 @@ tags:
 difficulty: "intermediate"
 version: "1.0.0"
 published: true
+coverImage: "/images/resources/012_agents-pack/thumb.png"
 order: 12
 lastUpdated: "2026-08-09"
 author: "AIPaths Academy"
