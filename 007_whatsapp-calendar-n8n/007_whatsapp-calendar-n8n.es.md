@@ -45,10 +45,6 @@ files:
     description: Tablas de base de datos para Supabase
 ---
 
-# Chatbot WhatsApp para Agendar Turnos
-
-Workflow completo de n8n para un chatbot de WhatsApp que agenda turnos automáticamente, sincroniza con Google Calendar y manda recordatorios 24 horas antes.
-
 ## Qué Incluye
 
 - **calendar_whatsapp.json** - Workflow completo de n8n listo para importar

@@ -42,10 +42,6 @@ files:
     description: Datos de ventas de ejemplo para probar
 ---
 
-# Workflows RAG para n8n
-
-Workflow de n8n listo para importar que demuestra los 4 métodos RAG para conectar agentes IA a tus datos.
-
 ## Qué Incluye
 
 - **RAG_N8N.json** - Workflow completo de n8n con los 4 métodos

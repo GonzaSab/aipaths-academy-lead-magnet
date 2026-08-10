@@ -49,10 +49,6 @@ files:
     description: Guía de instalación y estructura del pack
 ---
 
-# Pack de Agente IA para OpenClaw
-
-Tu primer agente de IA listo para instalar. "Juan" es un asistente personal especializado en Notion que gestiona tareas, estructura proyectos y mantiene todo organizado.
-
 ## Qué Incluye
 
 - **SOUL.md** — La identidad del agente: quién es, su personalidad, cómo se comunica

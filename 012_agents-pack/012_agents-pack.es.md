@@ -48,12 +48,6 @@ files:
     description: Guía de instalación y recorrido por el pack
 ---
 
-# Agents Pack
-
-Tres cosas listas para usar con cualquier agente de código: **agentes especialistas**, **skills** y una **librería de prompts**.
-
-Todo es markdown plano. No hay nada que instalar, nada que compilar y ningún runtime atado a un proveedor.
-
 ## Qué Incluye
 
 - **8 agentes especialistas** — en formato Claude Code y en formato portable (*agents.md*), que leen Codex, Cursor, OpenClaw y otros 30 clientes

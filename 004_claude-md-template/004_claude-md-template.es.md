@@ -42,10 +42,6 @@ files:
     description: Instrucciones de instalacion rapida
 ---
 
-# Plantilla CLAUDE.md Inicial
-
-Un archivo de configuracion minimo y efectivo para Claude Code que puedes personalizar para cualquier proyecto.
-
 ## Que Incluye
 
 - **CLAUDE.md** - Una plantilla inicial con valores predeterminados para:

@@ -49,10 +49,6 @@ files:
     description: Installation guide and pack structure
 ---
 
-# AI Agent Pack for OpenClaw
-
-Your first AI agent, ready to install. "Juan" is a personal assistant specialized in Notion that manages tasks, structures projects, and keeps everything organized.
-
 ## What's Included
 
 - **SOUL.md** — The agent's identity: who it is, its personality, how it communicates

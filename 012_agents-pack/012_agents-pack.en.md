@@ -49,14 +49,6 @@ files:
     description: Install guide and walkthrough of the pack
 ---
 
-# Agents Pack
-
-Three things ready to use with any coding agent: **specialist agents**, **skills**, and a **prompt library**.
-
-It is all plain markdown. Nothing to install, nothing to compile, no runtime tied to a provider.
-
-**Heads up:** the whole pack is written in Spanish.
-
 ## What's Included
 
 - **8 specialist agents** — in Claude Code format and in portable *agents.md* format, which Codex, Cursor, OpenClaw and 30+ other clients read

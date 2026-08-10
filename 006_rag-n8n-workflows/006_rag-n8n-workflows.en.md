@@ -42,10 +42,6 @@ files:
     description: Sample sales data for testing
 ---
 
-# RAG Methods n8n Workflows
-
-Ready-to-import n8n workflow demonstrating the 4 RAG methods for connecting AI agents to your data.
-
 ## What's Included
 
 - **RAG_N8N.json** - Complete n8n workflow with all 4 methods

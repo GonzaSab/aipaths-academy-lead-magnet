@@ -43,10 +43,6 @@ files:
     description: Guia de inicio rapido e indice de prompts
 ---
 
-# Kit de Prompts para IA
-
-Una coleccion curada de mas de 50 prompts listos para produccion, organizados por caso de uso. Copia, pega y obtiene resultados.
-
 ## Que Incluye
 
 ### Herramientas Base

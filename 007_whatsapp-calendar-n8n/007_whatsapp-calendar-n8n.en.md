@@ -45,10 +45,6 @@ files:
     description: Database tables for Supabase
 ---
 
-# WhatsApp Appointment Booking Chatbot
-
-Complete n8n workflow for a WhatsApp chatbot that automatically schedules appointments, syncs with Google Calendar, and sends 24-hour reminders.
-
 ## What's Included
 
 - **calendar_whatsapp.json** - Complete n8n workflow ready to import

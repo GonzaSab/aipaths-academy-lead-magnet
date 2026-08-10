@@ -43,10 +43,6 @@ files:
     description: Quick start guide and prompt index
 ---
 
-# AI Prompt Kit
-
-A curated collection of 50+ production-ready prompts organized by use case. Copy, paste, and get results.
-
 ## What's Included
 
 ### Core Tools

@@ -42,10 +42,6 @@ files:
     description: Quick setup instructions
 ---
 
-# CLAUDE.md Starter Template
-
-A minimal, effective configuration file for Claude Code that you can customize for any project.
-
 ## What's Included
 
 - **CLAUDE.md** - A starter template with sensible defaults for:
