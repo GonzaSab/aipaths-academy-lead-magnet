@@ -10,7 +10,7 @@ title: "RAG Methods n8n Workflows"
 description: "Ready-to-import n8n workflows showing the 4 RAG methods to connect AI agents with your data."
 
 # Category and taxonomy
-category: "automation"
+category: "templates"
 tags:
   - n8n
   - rag

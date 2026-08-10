@@ -10,7 +10,7 @@ title: "Workflows RAG para n8n"
 description: "Workflows de n8n listos para importar con los 4 métodos RAG para conectar agentes IA a tus datos."
 
 # Category and taxonomy
-category: "automation"
+category: "templates"
 tags:
   - n8n
   - rag

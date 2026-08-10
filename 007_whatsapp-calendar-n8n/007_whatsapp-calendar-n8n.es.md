@@ -10,7 +10,7 @@ title: "Chatbot WhatsApp para Agendar Turnos"
 description: "Workflow de n8n para un chatbot de WhatsApp que agenda turnos, sincroniza con Google Calendar y manda recordatorios."
 
 # Category and taxonomy
-category: "automation"
+category: "templates"
 tags:
   - n8n
   - whatsapp

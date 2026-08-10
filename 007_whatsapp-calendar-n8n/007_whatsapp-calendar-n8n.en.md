@@ -10,7 +10,7 @@ title: "WhatsApp Appointment Booking Chatbot"
 description: "n8n workflow for a WhatsApp chatbot that books appointments, syncs with Google Calendar, and sends reminders."
 
 # Category and taxonomy
-category: "automation"
+category: "templates"
 tags:
   - n8n
   - whatsapp
