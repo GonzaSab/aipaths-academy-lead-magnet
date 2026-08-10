@@ -55,6 +55,7 @@ lastUpdated: 'YYYY-MM-DD'
 author: AIPaths Academy
 downloadSize: 'X.X MB'
 estimatedSetupTime: 'X minutes'
+coverImage: /images/resources/XXX_slug.png
 prerequisites:
   - Requirement 1
   - Requirement 2
@@ -63,6 +64,30 @@ files:
     description: What's inside
 ---
 ```
+
+## Three Rules That Are Easy to Break
+
+**The landing page lives exactly one level deep.** The website scanner reads
+`<slug>/<slug>.<locale>.md` and nothing deeper. Everything below that is payload
+— the files the visitor gets in the ZIP — and is never parsed.
+
+This is not an optimization. A resource can legitimately ship markdown of its
+own (an agent pack, for instance), and that markdown can carry frontmatter that
+is valid for its own tool but not valid YAML. Before the depth limit existed,
+one such file threw during the scan and the catalog came back empty: the whole
+resources page rendered "No se encontraron recursos". Deep markdown is fine —
+just never expect it to be read.
+
+**Cover images do not go in the resource folder.** The download ZIP is built
+from the entire folder, so an image parked inside it ships to the user. Covers
+belong in the main website repo under `public/images/resources/`, and
+`coverImage` points at that public path.
+
+**`published: false` unlists, it does not unpublish.** The resource disappears
+from the catalog listing, but its URL and its download keep working. That is
+deliberate: links already out in YouTube descriptions, emails and the funnel
+must not start 404ing. To actually retire a resource, the link has to be
+retired too.
 
 ## Creating New Lead Magnets
 
