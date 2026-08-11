@@ -39,6 +39,46 @@ acá quema tokens sin avanzar un milímetro.
 Antes de tocar nada, leé el tablero del team: qué hay en `Todo`, `In Progress`,
 `In Review`, `Failed`. Así entrás en contexto y no pisás trabajo en curso.
 
+## Modo preclaim — si te despertó un despachador
+
+Este modo aplica si armaste un **despachador**: algo que corre por cadencia, mira la cola y
+levanta una sesión de agente cuando hay trabajo. No viene en el pack — es la pieza que te falta
+si querés que la cola avance sin que vos dispares la skill a mano.
+
+Un despachador que sólo levanta sesiones no alcanza: entre que decide y que la sesión arranca,
+cualquiera puede tomar la misma tarea. Por eso **reclama él**, antes de levantarte, y te pasa el
+resultado. Si tu prompt inicial trae un **`wake_id`**, un issue concreto y una **ventana de
+claim**, estás en este modo: no elegís tarea ni reclamás, **salteás el Paso 2 y el Paso 3**, y en
+su lugar verificás que su handshake siga en pie.
+
+Leé el issue y sus comentarios, y confirmá las cuatro:
+
+1. sigue en `Claiming`
+2. existe un comentario de claim con **tu** `wake_id`
+3. **ningún otro claim creado a partir de la ventana que te pasaron** es más antiguo que el tuyo
+4. sigue elegible: sin responsable, sin blocker abierto, sin sub-issues abiertas
+
+**Pasan las cuatro** → `Claiming → In Progress` y seguís en el Paso 4 con **esa** tarea. Una sola:
+no vuelvas al Paso 2 a buscar otra.
+
+**Falla alguna** → terminás **sin tocar el estado**. Dejá un `↩︎ stand-down <tu-wake_id>` diciendo
+cuál falló, y nada más. Ni a `Todo` ni a `Failed`: vale la misma regla del Paso 3, el que no
+trabaja no escribe estado.
+
+> **Usá la ventana que te pasaron, no la de 10 minutos.** Son dos preguntas distintas. La de 10
+> min del Paso 3 responde *"¿hay algún claim que todavía pueda estar vivo?"*. La del despachador
+> responde *"¿alguien más reclamó en el mismo instante que yo?"*, y por eso es de segundos. Si la
+> ensanchás podés ver un claim muerto que él descartó bien, creerte perdedor y terminar sin
+> trabajar una tarea que era tuya — y él ya la contó como despachada, así que nadie la vuelve a
+> mirar hasta que el reaper la libere.
+>
+> Que la ventana viaje en el prompt no es un detalle: si el despachador y la skill la definen cada
+> uno por su lado, tarde o temprano difieren y nadie se entera.
+>
+> **Revalidás igual aunque él haya ganado.** Entre su claim y tu primer turno pasan segundos o
+> minutos: el reaper pudo devolverla, alguien pudo moverla a mano, un blocker pudo abrirse. Ganó
+> una carrera en un instante que ya pasó; vos confirmás que ese instante sigue valiendo.
+
 ## Paso 2 — Elegir (rol, prioridad, dependencias)
 De `Todo` **con tu label** (`agent:<vos>`, de tu `IDENTITY.md`), **sin responsable**,
 elegí la de **mayor prioridad** (Urgent > High > Medium > Low; a igualdad, la más vieja).
@@ -106,3 +146,5 @@ leyendo el issue.
 - Tomar una tarea **bloqueada** (blocker abierto) o un **padre con sub-issues abiertas**.
 - Reclamar issues ya asignados o fuera de `Todo`.
 - Cerrar vos mismo a `Done`: eso es del review (ver `task-review`).
+- En modo preclaim: buscarte otra tarea si la que te asignaron no pasa la verificación. Terminás
+  ahí. El despachador cuenta un wake por sesión; si agarrás otra, le rompés los topes.
