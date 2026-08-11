@@ -52,13 +52,27 @@ Si no queda ninguna elegible, parás. No toques `Scheduled`, `Claiming` ni `Back
 Para que dos instancias del mismo rol no tomen la misma tarea:
 1. Movela `Todo → Claiming` y dejá un comentario `🔒 claim <tu-instancia> <timestamp>`.
 2. Esperá un jitter corto (1–3 s).
-3. Re-leé: su estado + los comentarios de claim por fecha.
-   - Sigue en `Claiming` y **tu claim es el más antiguo** → ganaste: `Claiming → In Progress`.
-   - Si no (hay un claim más viejo, o ya cambió de estado) → **la soltás** y volvés al Paso 2.
+3. Re-leé: su estado + los comentarios de claim por fecha. Sólo hay dos salidas:
+   - **Ganaste** — sigue en `Claiming` **y** tu claim es el más antiguo → `Claiming → In Progress`.
+     Verificá que siga en `Claiming` en el mismo momento de mover: si ya cambió, perdiste.
+   - **Perdiste** — hay un claim más viejo, **o** ya no está en `Claiming` → **no toques el estado.**
+     Comentá `↩︎ stand-down <tu-instancia>` para dejar rastro y volvé al Paso 2.
 4. Recién con `In Progress` empezás a trabajar.
 
-> Recuperación: si una tarea queda trabada en `Claiming` (una instancia murió a mitad),
-> el heartbeat/scheduler la devuelve a `Todo` pasado un umbral.
+> **Perder significa no escribir, no "soltar".** El perdedor nunca mueve la tarea — ni a `Todo`
+> ni a ningún lado. Es lo único seguro, y no es obvio: el reflejo de "la suelto así queda libre"
+> es exactamente el bug. Si el perdedor la devuelve a `Todo`, la tarea vuelve a estar disponible
+> **mientras el ganador la está trabajando** — dos agentes haciendo lo mismo, con los side effects
+> duplicados que eso implique, y encima el `In Progress` del ganador desaparece del tablero así
+> que nadie lo ve. Vale igual si todavía la ves en `Claiming`: el ganador está por promoverla y
+> vos no sabés en qué milisegundo estás.
+>
+> Recuperación: si el ganador muere a mitad, la tarea queda en `Claiming` y **el reaper**
+> (`skills/_cola-linear/reaper.mjs`, por GitHub Actions) la devuelve a `Todo` pasado el umbral.
+> Esa es la única vía que la libera, y es la correcta: no adivina, espera. Ojo con la latencia
+> real: los `schedule` de GitHub Actions son best-effort y se demoran bajo carga, así que aunque
+> declares `*/10` una tarea abandonada puede tardar bastante más en volver. Es lento a propósito,
+> no roto.
 
 ## Paso 4 — Ejecutar
 Hacé la tarea según su descripción. Dejá el rastro como **comentarios** en el issue

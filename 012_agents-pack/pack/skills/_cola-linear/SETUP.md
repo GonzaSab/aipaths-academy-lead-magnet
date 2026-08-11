@@ -14,13 +14,14 @@ Requisitos: cuenta de Linear · un agente (Claude Code, etc.) · Node 18+ (para 
 
 ## 1. Estados del workflow en Linear
 
-El pipeline usa 8 estados. Linear ya trae 5 por default (**Backlog, Todo, In Progress, Done, Canceled**); hay que crear 3: **Scheduled, In Review, Failed**.
+El pipeline usa 9 estados. Linear ya trae 5 por default (**Backlog, Todo, In Progress, Done, Canceled**); hay que crear 4: **Scheduled, Claiming, In Review, Failed**.
 
 | Estado | Tipo (categoría Linear) | Rol |
 |---|---|---|
 | Backlog | backlog | ideas que **no** querés que arranquen aún |
 | **Scheduled** 🆕 | unstarted | esperando su fecha; se auto-activa |
 | Todo | unstarted | disponible: el agente lo pollea y reclama |
+| **Claiming** 🆕 | started | lock transitorio mientras se resuelve quién la toma |
 | In Progress | started | reclamada (lock: nadie más la toca) |
 | **In Review** 🆕 | started | terminada; a verificar |
 | **Failed** 🆕 | started | erroró/falló → retry o descartar |
@@ -142,13 +143,13 @@ LINEAR_KEY=$(cat ~/.secrets/linear_api_key) LINEAR_TEAM_KEY=<TU-TEAM> DRY_RUN=1 
 ## 5. Usar la cola
 
 - **Programar a futuro:** creá la tarea en **Scheduled** con due date = cuándo querés que arranque.
-- **Que un agente la trabaje:** en tu agente disparás la skill **`task-runner`** ("agarrá una tarea"): reclama la primera de `Todo` con lock (Todo→In Progress), la trabaja, y la deja en `In Review` (o `Failed`).
+- **Que un agente la trabaje:** en tu agente disparás la skill **`task-runner`** ("agarrá una tarea"): reclama la de mayor prioridad de `Todo` con lock (`Todo → Claiming → In Progress`), la trabaja, y la deja en `In Review` (o `Failed`). Si dos instancias reclaman a la vez gana el claim más antiguo, y **la que pierde no toca el estado**: devolverla a `Todo` la liberaría mientras la ganadora ya la trabaja.
 - **Verificar:** disparás **`task-review`** ("revisá la cola"): aprueba (→Done) o devuelve (→Todo/Failed).
 
 ---
 
 ## Checklist rápido
-- [ ] 8 estados creados en Linear
+- [ ] 9 estados creados en Linear (incluido `Claiming`)
 - [ ] Personal API key creada y guardada segura
 - [ ] MCP de Linear conectado (`✔ Connected`)
 - [ ] Repo en GitHub + secret `LINEAR_KEY` + team key/TZ en el workflow

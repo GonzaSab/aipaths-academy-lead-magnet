@@ -84,7 +84,7 @@ de una cola compartida sin pisarse:
 | `task-runner` | tomar la próxima tarea disponible y trabajarla |
 | `task-review` | verificar lo que quedó en review: aprobar o devolver |
 
-Las tres necesitan setup (cuenta de Linear + 8 estados + el MCP). Está todo en
+Las tres necesitan setup (cuenta de Linear + 9 estados + el MCP). Está todo en
 `skills/_cola-linear/SETUP.md`, con un script que crea los estados en un comando.
 
 Lo que hace que esa cola no se rompa son dos piezas que casi nadie implementa: un **lock

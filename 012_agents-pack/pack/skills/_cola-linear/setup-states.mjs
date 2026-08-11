@@ -5,7 +5,7 @@
 //
 // Env:
 //   LINEAR_KEY      (requerido)  Personal API key.
-//   LINEAR_TEAM_KEY (requerido)  Key del team, ej. "ACME".
+//   LINEAR_TEAM_KEY (requerido)  Key del team, ej. "GON".
 //   DRY_RUN         (opcional)   "1"/"true" = solo reporta qué crearía.
 
 const API = "https://api.linear.app/graphql";
@@ -22,7 +22,7 @@ const PIPELINE = [
   { name: "Backlog",     type: "backlog",   color: "#bec2c8", position: 0,   description: "Cosas para hacer que todavía no querés que arranquen." },
   { name: "Scheduled",   type: "unstarted", color: "#a855f7", position: 0.5, description: "Esperando su fecha. El scheduler la mueve a Todo cuando llega la dueDate." },
   { name: "Todo",        type: "unstarted", color: "#e2e2e2", position: 1,   description: "Disponible: los agentes la pollean y la reclaman." },
-  { name: "Claiming",    type: "started",   color: "#f2994a", position: 1.5, description: "Lock transitorio: un agente la está reclamando. Gana el claim más antiguo; el resto la suelta a Todo." },
+  { name: "Claiming",    type: "started",   color: "#f2994a", position: 1.5, description: "Lock transitorio: un agente la está reclamando. Gana el claim más antiguo. El que pierde NO toca el estado: devolverla a Todo la liberaría mientras el ganador ya la trabaja. De acá sólo la saca el ganador (a In Progress) o el reaper." },
   { name: "In Progress", type: "started",   color: "#f2c94c", position: 2,   description: "Reclamada por un agente (lock por estado)." },
   { name: "In Review",   type: "started",   color: "#26b5ce", position: 2.5, description: "Terminada; espera verificación (agente de review o vos)." },
   { name: "Failed",      type: "started",   color: "#eb5757", position: 2.7, description: "Erroró o falló. Retry → Todo, o descartar → Canceled." },

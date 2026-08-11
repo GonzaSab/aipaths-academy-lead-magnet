@@ -40,7 +40,7 @@ Symlink mejor que copia: editás una vez y todos los harnesses ven el mismo arch
 | `task-runner` | "agarrá una tarea", "trabajá la cola", "próxima tarea" |
 | `task-review` | "revisá la cola", "review de tareas", "verificá lo que hicieron" |
 
-**Estas tres necesitan setup antes de servir**: una cuenta de Linear con 8 estados de
+**Estas tres necesitan setup antes de servir**: una cuenta de Linear con 9 estados de
 workflow y el MCP conectado. Todo está en `_cola-linear/SETUP.md`, y el script
 `_cola-linear/setup-states.mjs` crea los estados que falten en un comando.
 
