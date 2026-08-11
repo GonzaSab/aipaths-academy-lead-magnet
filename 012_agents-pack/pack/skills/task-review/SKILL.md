@@ -8,9 +8,11 @@ description: Verificar tareas en In Review de la cola de Linear y aprobarlas o d
 Verificás el trabajo que los agentes dejaron en **`In Review`** y decidís si pasa a
 `Done` o vuelve. Usás el MCP de Linear.
 
-> **Si el MCP falla, parás.** Mismo preflight que `task-runner` (su Paso 0): si dice
-> `Needs authentication`, el arreglo es un humano corriendo `claude mcp login linear-server`.
-> No corras `claude mcp add`: duplica la entrada y empeora el problema.
+> **Si el MCP falla, parás.** Mismo preflight que `task-runner` (su Paso 0), incluida la regla
+> de que el prefijo de las tools lo pone el harness (`mcp__linear-server__*` en Claude Code,
+> otro nombre en otro harness): si ves alguna familia de tools de Linear, tenés MCP. Si dice
+> `Needs authentication`, el arreglo es un humano corriendo el `mcp login` de su harness.
+> En Claude Code no corras `claude mcp add`: duplica la entrada y empeora el problema.
 
 ## Paso 1 — Listar
 Traé todos los issues en `In Review` del team.

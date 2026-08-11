@@ -29,7 +29,9 @@ El pipeline usa 9 estados. Linear ya trae 5 por default (**Backlog, Todo, In Pro
 | Canceled | canceled | descartada |
 
 **Automático (recomendado):** hacé primero el paso 2 (API key) y corré el script idempotente
-—crea solo los que falten, no duplica ni pisa:
+—crea los que falten y **sincroniza la descripción** de los que ya existen. Correlo de nuevo
+cada vez que cambie una descripción: es el texto del protocolo que el agente ve en Linear, y si
+sólo se creara, una corrección se quedaría en el repo mientras la versión vieja sigue viva:
 ```bash
 LINEAR_KEY=$(cat ~/.secrets/linear_api_key) LINEAR_TEAM_KEY=<TU-TEAM> \
   node setup-states.mjs
@@ -85,9 +87,13 @@ Sin browser (SSH/headless): agregá `--no-browser` y te imprime la URL.
 > servidor. Es la causa típica de un MCP que sigue diciendo "sin auth" por más veces que
 > lo agregues.
 
-**El nombre `linear-server` no es libre.** Las tools llegan al agente como
-`mcp__linear-server__*` y las skills `task-runner` / `task-review` las invocan así. Si lo
-registrás con otro nombre, las skills no encuentran nada.
+**Registralo como `linear-server`.** En Claude Code las tools llegan al agente con el nombre
+del server como prefijo — `mcp__linear-server__*` — y todo lo de acá asume ese nombre.
+
+Si tu agente corre en **otro harness**, el prefijo va a ser el que use ese harness (por ejemplo
+`mcp__linear__*` si ahí el server se llama `linear`). No es un problema: las skills buscan las
+tools de Linear por lo que hacen, no por un prefijo literal. Lo que **sí** importa es que el
+server esté registrado y autenticado.
 
 ---
 

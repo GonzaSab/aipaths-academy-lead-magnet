@@ -12,8 +12,10 @@ Si usás otro backend (Notion, Jira, un board propio), cambiá este binding y ad
 ## MCPs
 - **Linear MCP** (`linear-server`) — requerido. Es tu única vía a la cola.
 
-> El nombre `linear-server` no es libre: las tools llegan como `mcp__linear-server__*` y
-> las skills las invocan así. Si lo registrás con otro nombre, no encuentran nada.
+> El prefijo de las tools lo pone tu harness: en Claude Code el server se registra como
+> `linear-server` y llegan como `mcp__linear-server__*`; en otro harness puede ser otro nombre.
+> Las skills buscan las tools de Linear por lo que hacen, no por un prefijo literal — lo que
+> importa es que el server esté registrado y autenticado.
 
 Preflight antes de cualquier cosa: una lectura barata (listar estados del team). Si falla,
 **no improvises** — `task-runner` tiene la tabla de qué hacer con cada error.

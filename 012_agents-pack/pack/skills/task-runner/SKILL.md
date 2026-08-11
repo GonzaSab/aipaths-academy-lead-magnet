@@ -12,20 +12,28 @@ otro agente duplique el trabajo. Usás el MCP de Linear para todo.
 Antes de nada, una lectura barata (por ejemplo listar los estados del team). Si falla,
 **no sigas y no improvises**: sin MCP no hay cola, y ninguno de los arreglos está a tu alcance.
 
+> **El prefijo de las tools depende del harness. Buscalas por lo que hacen, no por su nombre.**
+> En Claude Code llegan como `mcp__linear-server__*`, porque ahí el server se registra con ese
+> nombre. Otro harness puede exponer el mismo server remoto con otro nombre y entonces llegan,
+> por ejemplo, como `mcp__linear__*`.
+>
+> Si ves **alguna** familia de tools de Linear, tenés MCP: seguí. Concluir que no hay MCP porque
+> el prefijo no es el que esperabas es el error a evitar — frena la cola con todo sano.
+
 | Lo que ves | Qué es | Qué hacés |
 |---|---|---|
-| `Needs authentication` / 401 | falta el OAuth | **Parás y se lo pedís a tu humano:** que corra `claude mcp login linear-server`. Necesita browser: vos no podés. |
-| No existe la tool `mcp__linear-server__*` | el server no está registrado en este harness | **Parás.** Que lo registren (ver `skills/_cola-linear/SETUP.md`, paso 3) y reinicien la sesión. |
+| `Needs authentication` / 401 | falta el OAuth | **Parás y se lo pedís a tu humano:** que corra el `mcp login` de su harness (en Claude Code, `claude mcp login linear-server`). Necesita browser: vos no podés. |
+| No hay **ninguna** tool de Linear, con ningún prefijo | el server no está registrado en este harness | **Parás.** Que lo registren (ver `skills/_cola-linear/SETUP.md`, paso 3) y reinicien la sesión. |
 | Timeout / 5xx | Linear caído o red | Reintentás **una** vez. Si sigue, parás y avisás. |
 
-**Nunca corras `claude mcp add` para arreglarlo.** No te sirve — la sesión viva no levanta un
-server recién registrado — y encima creás una entrada duplicada que necesita **su propio**
-OAuth: el auth se guarda por entrada registrada, no por servidor. Es la causa típica de un
-MCP que sigue diciendo "sin auth" por más veces que lo agregues.
+**En Claude Code, nunca corras `claude mcp add` para arreglarlo.** No te sirve — la sesión viva
+no levanta un server recién registrado — y encima creás una entrada duplicada que necesita **su
+propio** OAuth: el auth se guarda por entrada registrada, no por servidor. Es la causa típica de
+un MCP que sigue diciendo "sin auth" por más veces que lo agregues.
 
-Decilo explícito y frená: *"El MCP de Linear está registrado pero sin autenticar. Corré
-`claude mcp login linear-server` y volvé a pedirme la tarea."* Un agente que se queda
-reintentando acá quema tokens sin avanzar un milímetro.
+Decilo explícito y frená: *"El MCP de Linear está registrado pero sin autenticar. Corré el
+`mcp login` que corresponda y volvé a pedirme la tarea."* Un agente que se queda reintentando
+acá quema tokens sin avanzar un milímetro.
 
 ## Paso 1 — Entender el estado (onboarding)
 Antes de tocar nada, leé el tablero del team: qué hay en `Todo`, `In Progress`,
@@ -52,13 +60,23 @@ Si no queda ninguna elegible, parás. No toques `Scheduled`, `Claiming` ni `Back
 Para que dos instancias del mismo rol no tomen la misma tarea:
 1. Movela `Todo → Claiming` y dejá un comentario `🔒 claim <tu-instancia> <timestamp>`.
 2. Esperá un jitter corto (1–3 s).
-3. Re-leé: su estado + los comentarios de claim por fecha. Sólo hay dos salidas:
-   - **Ganaste** — sigue en `Claiming` **y** tu claim es el más antiguo → `Claiming → In Progress`.
-     Verificá que siga en `Claiming` en el mismo momento de mover: si ya cambió, perdiste.
-   - **Perdiste** — hay un claim más viejo, **o** ya no está en `Claiming` → **no toques el estado.**
-     Comentá `↩︎ stand-down <tu-instancia>` para dejar rastro y volvé al Paso 2.
+3. Re-leé: su estado + los comentarios de claim por fecha. **Contá sólo los claims vivos: los
+   de los últimos 10 minutos** (el `STALE_MINUTES` del reaper). Sólo hay dos salidas:
+   - **Ganaste** — sigue en `Claiming` **y** tu claim es el más antiguo **de los vivos** →
+     `Claiming → In Progress`. Verificá que siga en `Claiming` en el mismo momento de mover:
+     si ya cambió, perdiste.
+   - **Perdiste** — hay un claim vivo más viejo, **o** ya no está en `Claiming` → **no toques el
+     estado.** Comentá `↩︎ stand-down <tu-instancia>` para dejar rastro y volvé al Paso 2.
 4. Recién con `In Progress` empezás a trabajar.
 
+> **Por qué "vivos" y no "todos".** Un `🔒 claim` queda en el issue para siempre: cuando el
+> reaper devuelve una tarea a `Todo` comenta que lo hizo, pero **no borra** el claim de la
+> instancia que murió. Si contaras todos los claims, ese claim muerto sería el más antiguo para
+> siempre y **todo** claimant futuro se daría por perdedor — la tarea rebotaría entre `Todo` y
+> `Claiming` sin que nadie la trabaje nunca, que es exactamente lo que el reaper existe para
+> evitar. El lease real dura segundos, así que un claim de más de 10 minutos es de una ronda
+> muerta por definición: ignoralo.
+>
 > **Perder significa no escribir, no "soltar".** El perdedor nunca mueve la tarea — ni a `Todo`
 > ni a ningún lado. Es lo único seguro, y no es obvio: el reflejo de "la suelto así queda libre"
 > es exactamente el bug. Si el perdedor la devuelve a `Todo`, la tarea vuelve a estar disponible
