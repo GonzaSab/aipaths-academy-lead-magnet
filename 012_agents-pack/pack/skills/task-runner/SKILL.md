@@ -138,8 +138,27 @@ Hacé la tarea según su descripción. Dejá el rastro como **comentarios** en e
 leyendo el issue.
 
 ## Paso 5 — Cerrar tu parte
-- OK → movés `In Progress → In Review` y comentás un resumen + **qué hay que verificar**.
-- Error o bloqueo → movés `In Progress → Failed` y comentás el error concreto.
+
+**Nunca termines tu sesión dejando la tarea en `In Progress`.** Ese estado significa "hay alguien
+haciéndolo ahora mismo". Si te vas y la dejás ahí, el tablero miente: nadie más la toma porque
+parece ocupada, y queda trabada hasta que alguien la destrabe a mano. Salir sin mover el estado es
+la única salida que no existe.
+
+| Situación | A dónde la movés | Qué comentás |
+|---|---|---|
+| La terminaste | `In Review` | resumen + **qué hay que verificar** |
+| No se puede hacer, o erroró | `Failed` | el error concreto, con evidencia |
+| Hay que esperar a una fecha u hora | `Scheduled` **con due date** | por qué, y desde cuándo se puede |
+| Otro la puede seguir, o se reintenta ya | `Todo` | qué dejaste hecho y qué falta |
+
+> **Si la tarea no se podía tomar todavía, el problema es de carga, no tuyo.** Una tarea que
+> espera una fecha tiene que estar en `Scheduled`, no en `Todo` — el scheduler la activa cuando
+> corresponde. Si te tocó una prematura, movela a `Scheduled` con su fecha y decilo: estás
+> arreglando el archivado, no fallando la tarea.
+>
+> Ojo con la granularidad: la due date es **por día**, no por hora. Una tarea que sólo se puede
+> hacer después de cierta hora se activa a la madrugada de ese día igual. Dejá dicho en el
+> comentario a partir de qué hora sirve.
 
 ## Evitar
 - Trabajar más de una tarea a la vez. Una sola claim activa.
@@ -148,3 +167,5 @@ leyendo el issue.
 - Cerrar vos mismo a `Done`: eso es del review (ver `task-review`).
 - En modo preclaim: buscarte otra tarea si la que te asignaron no pasa la verificación. Terminás
   ahí. El despachador cuenta un wake por sesión; si agarrás otra, le rompés los topes.
+- **Terminar tu sesión con la tarea en `In Progress`.** Si no la vas a seguir ahora, movela:
+  `In Review`, `Failed`, `Scheduled` o `Todo` según el caso (Paso 5). Nunca la dejes ahí.
