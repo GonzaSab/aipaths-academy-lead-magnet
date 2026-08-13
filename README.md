@@ -6,7 +6,7 @@ This repository contains downloadable resources (lead magnets) for AIPaths Acade
 
 Lead magnets are free, downloadable resources that provide immediate value to our community while helping build our email list and engagement. Each lead magnet includes:
 
-- Bilingual landing pages (English and Spanish)
+- A Spanish landing page (English pages exist only for legacy resources)
 - Practical configuration files and templates
 - Setup instructions and documentation
 - Ready-to-use code examples
@@ -15,26 +15,23 @@ Lead magnets are free, downloadable resources that provide immediate value to ou
 
 ```
 AIPaths_Academy_Lead_Magnets/
-├── 001_ai-starter-pack/          # AI Development Starter Pack
-│   ├── 001_ai-starter-pack.en.md # English landing page
-│   ├── 001_ai-starter-pack.es.md # Spanish landing page
+├── 002_ai-agents-config/          # AI Agents Configuration Pack (legacy pair)
+│   ├── 002_ai-agents-config.es.md # Spanish landing page (published)
+│   ├── 002_ai-agents-config.en.md # English landing page (frozen legacy)
 │   ├── README.md                  # Setup instructions
-│   ├── .cursor/                   # Cursor configuration
-│   ├── .continue/                 # Continue extension config
-│   └── mcp-configs/               # MCP server configs
-├── 002_ai-agents-config/          # AI Agents Configuration Pack
-│   ├── 002_ai-agents-config.en.md
-│   ├── 002_ai-agents-config.es.md
-│   ├── README.md
 │   └── agents/                    # Sample agent configs
+├── 013_your-new-pack/             # New resource: Spanish only
+│   ├── 013_your-new-pack.es.md
+│   ├── README.md
+│   └── template/                  # Payload files (never parsed by the site)
 └── README.md                      # This file
 ```
 
 ## Naming Conventions
 
 - Folders: `XXX_kebab-case-name/` (e.g., `001_ai-starter-pack/`)
-- Landing pages: `XXX_slug.{locale}.md` (e.g., `001_ai-starter-pack.en.md`)
-- Locale codes: `en` (English), `es` (Spanish)
+- Landing pages: `XXX_slug.{locale}.md` (e.g., `002_ai-agents-config.es.md`)
+- Locale codes: `es` (Spanish, the published locale), `en` (legacy only)
 
 ## Frontmatter Structure
 
@@ -92,7 +89,9 @@ retired too.
 ## Creating New Lead Magnets
 
 1. Create a new folder with naming convention `XXX_kebab-case/`
-2. Add bilingual landing pages (`.en.md` and `.es.md`)
+2. Add the Spanish landing page (`.es.md`). Do **not** create an `.en.md`
+   counterpart: AIPaths publishes Spanish-only. Existing English landing pages
+   stay published and frozen — never rewritten or deleted.
 3. Include a README.md with setup instructions
 4. Add all necessary files, configs, and templates
 5. Test the setup process thoroughly
