@@ -14,6 +14,10 @@ on:
       - '!.github/**'
       - '!README.md'
 
+concurrency:
+  group: notify-main-repo
+  cancel-in-progress: false
+
 jobs:
   notify:
     runs-on: ubuntu-latest
@@ -23,10 +27,10 @@ jobs:
         run: |
           echo "Notifying main repository of resources update..."
 
-          curl -X POST \
+          curl -X POST --fail \
             -H "Accept: application/vnd.github.v3+json" \
             -H "Authorization: token ${{ secrets.MAIN_REPO_PAT }}" \
-            https://api.github.com/repos/GonzaSab/aipaths-academy/dispatches \
+            https://api.github.com/repos/openclaw-io/aipaths-academy/dispatches \
             -d '{
               "event_type": "resources-updated",
               "client_payload": {
