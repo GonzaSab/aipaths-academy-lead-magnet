@@ -6,7 +6,7 @@ This repository contains downloadable resources (lead magnets) for AIPaths Acade
 
 Lead magnets are free, downloadable resources that provide immediate value to our community while helping build our email list and engagement. Each lead magnet includes:
 
-- Bilingual landing pages (English and Spanish)
+- A Spanish landing page (Spanish-only policy, GON-150 — new lead magnets ship `.es.md` only; some older lead magnets also have a legacy `.en.md`, which stays published but isn't required for new ones)
 - Practical configuration files and templates
 - Setup instructions and documentation
 - Ready-to-use code examples
@@ -33,8 +33,8 @@ AIPaths_Academy_Lead_Magnets/
 ## Naming Conventions
 
 - Folders: `XXX_kebab-case-name/` (e.g., `001_ai-starter-pack/`)
-- Landing pages: `XXX_slug.{locale}.md` (e.g., `001_ai-starter-pack.en.md`)
-- Locale codes: `en` (English), `es` (Spanish)
+- Landing pages: `XXX_slug.{locale}.md` (e.g., `001_ai-starter-pack.es.md`)
+- Locale codes: `en` (English, legacy/optional), `es` (Spanish, required)
 
 ## Frontmatter Structure
 
@@ -92,7 +92,7 @@ retired too.
 ## Creating New Lead Magnets
 
 1. Create a new folder with naming convention `XXX_kebab-case/`
-2. Add bilingual landing pages (`.en.md` and `.es.md`)
+2. Add `.es.md` (required). Do not create a new `.en.md` — EN is legacy/optional (GON-150)
 3. Include a README.md with setup instructions
 4. Add all necessary files, configs, and templates
 5. Test the setup process thoroughly
